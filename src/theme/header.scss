@@ -1,0 +1,24 @@
+header {
+  grid-area: header;
+  background: $light;
+  padding: 1rem 2.5%;
+  @include flex-justify(sb);
+  align-items: center;
+}
+.user {
+  display: flex;
+  @include flex-full-center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.user-photo {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.user-balance {
+  margin-left: 1.5rem;
+}

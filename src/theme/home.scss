@@ -1,0 +1,37 @@
+.home {
+  display: flex;
+
+  .home-wrapper {
+    @include full-size;
+    margin: 0 1.2%;
+    border-radius: 1rem;
+    @include flex-justify(sb);
+    flex-direction: column;
+  }
+  .home-container {
+    width: 100%;
+    height: 48%;
+    .home-block {
+      @include full-size;
+      @include background-blur;
+      border-radius: 1rem;
+    }
+  }
+  .home-block {
+    padding: 1.25rem;
+    position: relative;
+  }
+  .operations-link {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+  }
+
+  .block-content {
+    margin: 2rem 0;
+  }
+
+  .operations {
+    @include background-blur;
+  }
+}

@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+}
+body {
+  background-color: $page;
+  color: #fff;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+a {
+  color: #00c4ff;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: start;
+  &:hover {
+    color: #98e7ff;
+    text-decoration: none;
+  }
+}
+.wrapper {
+  height: 100vh;
+  display: grid;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  grid-template-columns: 0.7fr 4fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "sidebar  header"
+    "sidebar content";
+}
+main {
+  grid-area: content;
+  padding: 2% 1%;
+  @include full-size;
+}
+.main-container {
+  @include background-blur;
+  margin: 2%;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.block-header {
+  @include flex-justify(sb);
+  align-items: center;
+  h2 {
+    padding: 0.5rem 0 2rem 0;
+  }
+  button {
+    background: $gradient;
+    border-radius: 5px;
+    padding: 0.5rem 1.2rem;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 2.5rem;
+    cursor: pointer;
+    svg {
+      position: absolute;
+      font-size: 0.8rem;
+      top: 29%;
+      left: 1rem;
+    }
+  }
+}
+.block-wrapper {
+  padding: 0 1rem 4rem 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+::-webkit-scrollbar-track {
+  background: $transp;
+  border-radius: 5rem;
+}
+::-webkit-scrollbar-thumb {
+  background: $gradient;
+  border-radius: 5rem;
+}

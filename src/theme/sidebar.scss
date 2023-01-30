@@ -40,6 +40,10 @@ nav {
 .out {
   position: absolute;
   bottom: 1.25rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #00c4ff;
   svg {
     margin-left: 0.5rem;
   }

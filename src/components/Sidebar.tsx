@@ -1,12 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { FC } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { GiChest, GiEntryDoor, GiStairsGoal } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt } from "react-icons/bi";
+import { logOut } from "../redux/auth/authSlice";
 
 export const Sidebar: FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logOutButton = () => {
+    dispatch(logOut());
+    navigate("/login");
+  };
   return (
     <aside>
       <div className="sidebar-wrapper">
@@ -32,9 +41,9 @@ export const Sidebar: FC = () => {
             <CgProfile /> Profile
           </NavLink>
         </nav>
-        <NavLink className="out" to="/login">
+        <button className="out" onClick={logOutButton}>
           Log out <GiEntryDoor />
-        </NavLink>
+        </button>
       </div>
     </aside>
   );

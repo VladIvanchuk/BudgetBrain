@@ -1,29 +1,27 @@
-import { Header, Sidebar } from "./components";
+//Core
 import { Navigate, Route, Routes } from "react-router-dom";
+//Components
 import { Home, Profile, MoneyBox, Login, SignUp, Goals, Transactions } from "./pages";
-import bgMain from "./theme/img/wallpaper6.jpg";
-import bg2 from "./theme/img/wallpaper2.jpg";
+import { RequireAuth } from "./features";
+import { Layout } from "./components";
+import { useLocalToken } from "./hooks";
 
 export const App = () => {
-  const isAuth = true;
+  const { isAuth } = useLocalToken();
   return (
-    <div
-      className="wrapper"
-      style={{ background: `url(${isAuth ? bgMain : bg2}) center` }}
-    >
-      {isAuth && <Header />}
-      {isAuth && <Sidebar />}
+    <Layout>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/transactions" element={<Transactions />} />
-        <Route path="/goals" element={<Goals />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/money-box" element={<MoneyBox />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/money-box" element={<MoneyBox />} />
+        </Route>
+        <Route path="*" element={<Navigate to={isAuth ? "/home" : "/login"} replace />} />
       </Routes>
-    </div>
+    </Layout>
   );
 };

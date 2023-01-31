@@ -43,6 +43,14 @@
     padding: 0 0.3rem;
     z-index: 10;
   }
+  .error-message {
+    position: absolute;
+    top: -1.3rem;
+    right: 0;
+    color: #4670da;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
   input {
     color: #fff;
     position: absolute;
@@ -57,14 +65,86 @@
     padding: 0 1.5rem;
     z-index: 1;
   }
-  button {
+  .btn {
     font-size: 1rem;
     font-weight: 700;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 0rem;
     background: #3614dd;
     color: #fff;
     border: none;
     border-radius: 0.2rem;
     cursor: pointer;
+    text-align: center;
+    transition: all 0.1s;
+    position: relative;
+    top: -3px;
+    &:hover {
+      background: #4d29ff;
+    }
+    &:active {
+      transition: all 0.1s;
+      top: 1px;
+    }
+    span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.3s;
+    }
+    span:after {
+      content: "\00bb";
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: 0.5rem;
+      transition: 0.3s;
+    }
+    &:hover span {
+      padding-right: 0.8rem;
+    }
+    &:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    &.reg {
+      width: 8rem;
+    }
+    &.log {
+      width: 7rem;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      right: 0.5rem;
+      top: 20%;
+      width: 1rem;
+      height: 1rem;
+      border: 0.125rem solid;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.5s;
+      animation: 0.8s linear infinite rotate;
+    }
+    &.sending {
+      pointer-events: none;
+      cursor: not-allowed;
+      padding-right: 1rem;
+      background: #7458ff;
+      &:before {
+        transition-delay: 0.2s;
+        transition-duration: 0.5s;
+        opacity: 1;
+      }
+    }
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

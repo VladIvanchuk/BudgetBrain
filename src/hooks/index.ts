@@ -1,2 +1,2 @@
 export { useLocalToken } from "./useLocalToken";
-export { useStateToken } from "./useStateToken";
+export { useToastMessage } from "./useToastMessage";

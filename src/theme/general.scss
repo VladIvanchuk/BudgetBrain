@@ -10,6 +10,7 @@ body {
   background-color: $page;
   color: #fff;
   font-family: "Montserrat Alternates", sans-serif;
+  overflow: hidden;
 }
 a {
   color: #00c4ff;
@@ -72,7 +73,9 @@ main {
 .block-wrapper {
   padding: 0 1rem 4rem 1rem;
 }
-
+.Toastify {
+  position: absolute;
+}
 ::-webkit-scrollbar {
   width: 0.3rem;
 }

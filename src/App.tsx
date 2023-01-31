@@ -5,11 +5,15 @@ import { Home, Profile, MoneyBox, Login, SignUp, Goals, Transactions } from "./p
 import { RequireAuth } from "./features";
 import { Layout } from "./components";
 import { useLocalToken } from "./hooks";
+import { Bounce, ToastContainer } from "react-toastify";
+import { useToastMessage } from "./hooks/useToastMessage";
 
 export const App = () => {
+  useToastMessage();
   const { isAuth } = useLocalToken();
   return (
     <Layout>
+      <ToastContainer newestOnTop transition={Bounce} theme="dark" />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />

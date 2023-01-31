@@ -6,7 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { GiChest, GiEntryDoor, GiStairsGoal } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt } from "react-icons/bi";
-import { logOut } from "../redux/auth/authSlice";
+import { logOut, setSuccess } from "../redux/auth/authSlice";
 
 export const Sidebar: FC = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ export const Sidebar: FC = () => {
 
   const logOutButton = () => {
     dispatch(logOut());
+    dispatch((setSuccess as any)("You are Logout"));
     navigate("/login");
   };
   return (

@@ -1,5 +1,7 @@
 export interface IAuth {
   token: string | null;
-  errorMessage: string | null;
-  successMessage: string | null;
+  message: {
+    text: string;
+    type: string;
+  };
 }

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -24,7 +24,7 @@ export const LoginForm: FC = () => {
       const userData = await login(data as ILogin).unwrap();
       dispatch(setCredentials({ ...userData }));
       navigate("/home");
-      isLoading.status === "fulfilled" && dispatch((setSuccess as any)("Welcome back!"));
+      dispatch((setSuccess as any)("Welcome back!"));
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));

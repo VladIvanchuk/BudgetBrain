@@ -4,8 +4,10 @@ import { RootState } from "../store";
 
 const initialState: IAuth = {
   token: null,
-  errorMessage: null,
-  successMessage: null,
+  message: {
+    text: "",
+    type: "",
+  },
 };
 
 const authSlice = createSlice({
@@ -22,14 +24,15 @@ const authSlice = createSlice({
       localStorage.removeItem("jwtToken");
     },
     setError: (state, action: AnyAction) => {
-      state.errorMessage = action.payload;
+      state.message.text = action.payload;
+      state.message.type = "error";
     },
     setSuccess: (state, action: AnyAction) => {
-      state.successMessage = action.payload;
+      state.message.text = action.payload;
+      state.message.type = "success";
     },
     resetMessage: (state) => {
-      state.errorMessage = null;
-      state.successMessage = null;
+      state.message.text = "";
     },
   },
 });
@@ -41,5 +44,5 @@ export default authSlice.reducer;
 
 export const selectCurrentToken = (state: RootState) => state.auth?.token;
 
-export const selectErrorMessage = (state: RootState) => state.auth?.errorMessage;
-export const selectSuccessMessage = (state: RootState) => state.auth?.successMessage;
+export const selectMessage = (state: RootState) => state.auth?.message.text;
+export const selectMessageType = (state: RootState) => state.auth?.message.type;

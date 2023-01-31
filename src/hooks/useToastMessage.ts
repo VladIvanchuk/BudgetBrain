@@ -2,25 +2,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { toastOptions } from "../features/toastOptions";
-import {
-  resetMessage,
-  selectErrorMessage,
-  selectSuccessMessage,
-} from "../redux/auth/authSlice";
+import { resetMessage, selectMessage, selectMessageType } from "../redux/auth/authSlice";
 
 export const useToastMessage = () => {
   const dispatch = useDispatch();
-  const errorMessage = useSelector(selectErrorMessage);
-  const successMessage = useSelector(selectSuccessMessage);
+  const message = useSelector(selectMessage);
+  const messageType = useSelector(selectMessageType);
 
   useEffect(() => {
-    if (errorMessage) {
-      toast.error(errorMessage, toastOptions);
+    if (messageType === "error") {
+      toast.error(message, toastOptions);
       dispatch(resetMessage);
     }
-    if (successMessage) {
-      toast.success(successMessage, toastOptions);
+    if (messageType === "success") {
+      toast.success(message, toastOptions);
       dispatch(resetMessage);
     }
-  }, [dispatch, errorMessage, successMessage]);
+  }, [dispatch, message, messageType]);
 };

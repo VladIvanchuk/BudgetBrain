@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../../redux/api/authApiSlice";
@@ -23,8 +23,7 @@ export const RegisterForm: FC = () => {
     try {
       const userData = await register(data as ISignUp).unwrap();
       dispatch(setCredentials({ ...userData }));
-      isLoading.status === "fulfilled" &&
-        dispatch((setSuccess as any)("You are registered! Now login"));
+      dispatch((setSuccess as any)("You are registered! Now login"));
       navigate("/login");
     } catch (err: any) {
       if (!err?.status) {

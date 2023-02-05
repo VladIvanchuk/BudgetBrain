@@ -38,7 +38,7 @@ export const RegisterForm: FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2>Register</h2>
+      <h2 className="form-header">Register</h2>
       <Input
         label="Name"
         type="name"

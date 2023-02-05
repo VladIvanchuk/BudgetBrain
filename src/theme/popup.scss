@@ -1,0 +1,111 @@
+.popup-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  @include background-blur;
+  z-index: 100;
+  @include flex-full-center;
+  color: $dark;
+}
+.popup {
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  .header {
+    font-size: 1.2rem;
+    @include flex-justify(sb);
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #7157c5;
+    padding: 1.5rem 2rem;
+    svg {
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.1s;
+      &:hover {
+        transform: scale(1.3);
+        transition: 0.05s;
+      }
+    }
+  }
+}
+.popup-form {
+  background: none;
+  color: #000 !important;
+  padding: 1rem 2rem;
+
+  .form-tag {
+    width: 7.5rem;
+  }
+  input {
+    color: #2b3141;
+    font-size: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 0 8px;
+  }
+
+  .popup-item {
+    @include flex-justify(sb);
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 1rem;
+    height: 2.5rem;
+    .form-tag {
+      position: static;
+    }
+    input {
+      position: static;
+    }
+  }
+
+  select {
+    background-color: #fff;
+    color: #000 !important;
+    height: 100%;
+    outline: none;
+    border-radius: 0.75rem;
+    padding: 0 0.75rem;
+    z-index: 1;
+    cursor: inherit;
+    border-radius: 0.5em;
+  }
+  .div {
+    width: 100%;
+    @include flex-justify(sb);
+    .form-div {
+      width: 48%;
+    }
+  }
+  .btn {
+    margin-top: 1.2rem;
+    align-self: flex-end;
+    background: $gradient;
+    span:after {
+      content: "\002B";
+    }
+  }
+  .error-message {
+    color: red;
+    right: 0;
+    font-size: 0.7rem;
+    top: -1.1rem;
+  }
+  .select {
+    z-index: 101;
+    width: 100%;
+  }
+  .description {
+    position: absolute;
+    bottom: -0.9rem;
+    right: 0;
+    font-size: 0.7rem;
+    color: #525252 !important;
+  }
+  .back {
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}

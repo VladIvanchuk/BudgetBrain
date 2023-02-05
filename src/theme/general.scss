@@ -31,7 +31,7 @@ a {
   grid-template-columns: 0.7fr 4fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "sidebar  header"
+    "header  header"
     "sidebar content";
 }
 main {
@@ -43,7 +43,7 @@ main {
   @include background-blur;
   margin: 2%;
   padding: 1.25rem;
-  border-radius: 1rem;
+  border-radius: $rad;
   overflow: hidden;
 }
 .block-header {
@@ -54,7 +54,7 @@ main {
   }
   button {
     background: $gradient;
-    border-radius: 5px;
+    border-radius: 6px;
     padding: 0.5rem 1.2rem;
     color: #fff;
     font-weight: 500;

@@ -1,24 +1,30 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import { BsPlusLg } from "react-icons/bs";
-import { Transaction } from "../components";
+import { AddTransaction, PopUp, Transaction } from "../components";
 
 export const Transactions: FC = () => {
+  const [openModal, setOpenModal] = useState(false);
   const data = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   const tarns = data.map((el) => {
     return <Transaction key={el} />;
   });
   return (
-    <div className="main-container">
-      <div className="block-header">
-        <h2>Transactions</h2>
-        <button>
-          <BsPlusLg />
-          <span>Add transaction</span>
-        </button>
+    <>
+      <PopUp name="Add Transaction" open={openModal} onClose={() => setOpenModal(false)}>
+        <AddTransaction onClose={() => setOpenModal(false)} />
+      </PopUp>
+      <div className="main-container">
+        <div className="block-header">
+          <h2>Transactions</h2>
+          <button onClick={() => setOpenModal(true)}>
+            <BsPlusLg />
+            <span>Add transaction</span>
+          </button>
+        </div>
+        <div className="transactions-wrapper">{tarns}</div>
       </div>
-      <div className="transactions-wrapper">{tarns}</div>
-    </div>
+    </>
   );
 };

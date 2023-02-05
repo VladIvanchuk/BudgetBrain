@@ -1,14 +1,24 @@
 header {
   grid-area: header;
-  background: $light;
+  background-color: $transp;
+  backdrop-filter: blur(20px);
   padding: 1rem 2.5%;
   @include flex-justify(sb);
   align-items: center;
+  border-bottom: 1.5px solid #b8b8b8;
+}
+.logo {
+  font-weight: 600;
+  font-size: 1.2rem;
+  span {
+    color: #ffdd00;
+    font-weight: 700;
+  }
 }
 .user {
   display: flex;
   @include flex-full-center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
 }
 .user-photo {
@@ -17,7 +27,7 @@ header {
   height: 2rem;
   background-color: #fff;
   border-radius: 50%;
-  margin-right: 0.5rem;
+  margin-right: .8rem;
 }
 .user-balance {
   margin-left: 1.5rem;

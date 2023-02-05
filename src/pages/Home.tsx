@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import { Transaction } from "../components";
+import { AddTransaction, PopUp, Transaction } from "../components";
 
 export const Home: FC = () => {
   const data = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const [openModal, setOpenModal] = useState(false);
 
   const tarns = data
     .map((el) => {
@@ -13,40 +14,45 @@ export const Home: FC = () => {
     .slice(0, 6);
 
   return (
-    <main className="home">
-      <div className="home-wrapper operations">
-        <div className="home-block">
-          <div className="block-header">
-            <h4>Last operations</h4>
-            <button>
-              <BsPlusLg />
-              <span>Add transaction</span>
-            </button>
-          </div>
-          <div className="block-content">{tarns}</div>
-          <NavLink className="operations-link" to="/transactions">
-            See more ➤
-          </NavLink>
-        </div>
-      </div>
-      <div className="home-wrapper">
-        <div className="home-container">
+    <>
+      <PopUp name="Add Transaction" open={openModal} onClose={() => setOpenModal(false)}>
+        <AddTransaction onClose={() => setOpenModal(false)} />
+      </PopUp>
+      <main className="home">
+        <div className="home-wrapper operations">
           <div className="home-block">
             <div className="block-header">
-              <h4>Balance</h4>
+              <h4>Last operations</h4>
+              <button onClick={() => setOpenModal(true)}>
+                <BsPlusLg />
+                <span>Add transaction</span>
+              </button>
             </div>
-            <div className="block-content"></div>
+            <div className="block-content">{tarns}</div>
+            <NavLink className="operations-link" to="/transactions">
+              See more ➤
+            </NavLink>
           </div>
         </div>
-        <div className="home-container">
-          <div className="home-block">
-            <div className="block-header">
-              <h4>Saving goals</h4>
+        <div className="home-wrapper">
+          <div className="home-container">
+            <div className="home-block">
+              <div className="block-header">
+                <h4>Balance</h4>
+              </div>
+              <div className="block-content"></div>
             </div>
-            <div className="block-content"></div>
+          </div>
+          <div className="home-container">
+            <div className="home-block">
+              <div className="block-header">
+                <h4>Saving goals</h4>
+              </div>
+              <div className="block-content"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };

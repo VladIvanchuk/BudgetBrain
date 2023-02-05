@@ -40,7 +40,7 @@ export const LoginForm: FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2>Login</h2>
+      <h2 className="form-header">Login</h2>
       <Input
         label="Email"
         type="email"

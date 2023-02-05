@@ -1,10 +1,10 @@
 .home {
   display: flex;
+  padding: 2%;
 
   .home-wrapper {
     @include full-size;
-    margin: 0 1.2%;
-    border-radius: 1rem;
+    border-radius: $rad;
     @include flex-justify(sb);
     flex-direction: column;
   }
@@ -14,7 +14,7 @@
     .home-block {
       @include full-size;
       @include background-blur;
-      border-radius: 1rem;
+      border-radius: $rad;
     }
   }
   .home-block {
@@ -33,5 +33,6 @@
 
   .operations {
     @include background-blur;
+    margin-right: 1rem;
   }
 }

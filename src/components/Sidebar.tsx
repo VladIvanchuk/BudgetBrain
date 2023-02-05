@@ -6,6 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { GiChest, GiEntryDoor, GiStairsGoal } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt } from "react-icons/bi";
+import { BsWallet2, BsHouseDoorFill } from "react-icons/bs";
 import { logOut, setSuccess } from "../redux/auth/authSlice";
 
 export const Sidebar: FC = () => {
@@ -20,17 +21,15 @@ export const Sidebar: FC = () => {
   return (
     <aside>
       <div className="sidebar-wrapper">
-        <div className="logo">
-          <h2>
-            Budget<span>Brain</span>
-          </h2>
-        </div>
         <nav>
           <NavLink active-classname="active" to="/home">
-            <AiFillHome /> Home
+            <BsHouseDoorFill /> Home
           </NavLink>
           <NavLink active-classname="active" to="/transactions">
             <BiTransferAlt /> Transactions
+          </NavLink>
+          <NavLink active-classname="active" to="/wallet">
+            <BsWallet2 /> Wallet
           </NavLink>
           <NavLink active-classname="active" to="/money-box">
             <GiChest /> MoneyBox

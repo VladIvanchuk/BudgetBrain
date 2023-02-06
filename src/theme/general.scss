@@ -19,8 +19,21 @@ a {
   display: flex;
   align-items: start;
   &:hover {
-    color: #98e7ff;
+    color: #89e4ff;
     text-decoration: none;
+  }
+}
+.video-bg {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 .wrapper {
@@ -62,6 +75,11 @@ main {
     position: relative;
     padding-left: 2.5rem;
     cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+      transform: scale(1.05);
+      transition: 0.1s;
+    }
     svg {
       position: absolute;
       font-size: 0.8rem;
@@ -86,4 +104,11 @@ main {
 ::-webkit-scrollbar-thumb {
   background: $gradient;
   border-radius: 5rem;
+}
+.nothing {
+  font-size: 1.3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
-import { BsPlusLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import { AddTransaction, PopUp, Transaction } from "../components";
+import { AddButton, AddTransaction, Nothing, PopUp, Transaction } from "../components";
 
 export const Home: FC = () => {
   const data = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -23,10 +22,7 @@ export const Home: FC = () => {
           <div className="home-block">
             <div className="block-header">
               <h4>Last operations</h4>
-              <button onClick={() => setOpenModal(true)}>
-                <BsPlusLg />
-                <span>Add transaction</span>
-              </button>
+              <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
             </div>
             <div className="block-content">{tarns}</div>
             <NavLink className="operations-link" to="/transactions">

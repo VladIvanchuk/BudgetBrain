@@ -20,18 +20,23 @@ nav {
   a {
     font-size: 1.1rem;
     font-weight: 600;
+    letter-spacing: 0.02rem;
     width: 100%;
     color: #fff;
     border-radius: 6px;
     padding: 0.5rem 1.5rem;
-    transition: 0.3s;
+    transition: 0.2s;
     &:hover {
       background-color: rgba(12 15 25 / 30%);
-      transition: 0.3s;
+      transition: 0.2s;
     }
   }
   .active {
-    background: linear-gradient(89.68deg, #ee62b8 0.31%, #a610ab 99.76%);
+    background: rgb(141, 67, 220);
+    &:hover {
+      background: #924ed9;
+      color: #242456;
+    }
   }
   svg {
     margin-right: 0.5rem;

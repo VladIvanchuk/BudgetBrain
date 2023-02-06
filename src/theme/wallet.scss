@@ -1,0 +1,49 @@
+$card: #000;
+.cards {
+  padding-top: 1rem;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+.card {
+  position: relative;
+  margin: 0 1.5rem 1.5rem 0;
+  width: 20rem;
+  height: 12.5rem;
+  background-color: $card;
+  border-radius: 10px;
+  padding: 0.9rem;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+  }
+
+  .name {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  svg {
+    margin: 0.1rem 0.9rem;
+    font-size: 3rem;
+  }
+  .number {
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.5rem;
+  }
+  .balance {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+.cash {
+  font-size: 1.4rem;
+  font-weight: bold;
+}

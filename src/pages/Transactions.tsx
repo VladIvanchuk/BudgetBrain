@@ -1,7 +1,5 @@
 import { FC, useState } from "react";
-
-import { BsPlusLg } from "react-icons/bs";
-import { AddTransaction, PopUp, Transaction } from "../components";
+import { AddButton, AddTransaction, PopUp, Transaction } from "../components";
 
 export const Transactions: FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -10,6 +8,7 @@ export const Transactions: FC = () => {
   const tarns = data.map((el) => {
     return <Transaction key={el} />;
   });
+
   return (
     <>
       <PopUp name="Add Transaction" open={openModal} onClose={() => setOpenModal(false)}>
@@ -18,10 +17,7 @@ export const Transactions: FC = () => {
       <div className="main-container">
         <div className="block-header">
           <h2>Transactions</h2>
-          <button onClick={() => setOpenModal(true)}>
-            <BsPlusLg />
-            <span>Add transaction</span>
-          </button>
+          <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
         </div>
         <div className="transactions-wrapper">{tarns}</div>
       </div>

@@ -20,15 +20,17 @@
   .home-block {
     padding: 1.25rem;
     position: relative;
+    height: 100%;
   }
   .operations-link {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 1rem;
     right: 1rem;
   }
 
   .block-content {
     margin: 2rem 0;
+    position: relative;
   }
 
   .operations {

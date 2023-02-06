@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
+import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
 import { schema } from "./config";
 
@@ -13,6 +14,12 @@ const incomeCategory = [
   { value: "gift", label: "Gift" },
   { value: "deposit", label: "Deposit" },
   { value: "other", label: "Other" },
+];
+const cards = [
+  { value: "cash", label: "Cash" },
+  { value: "salary", label: "My card *0288" },
+  { value: "remittance", label: "New card *9849" },
+  { value: "investment", label: "Privat *5987" },
 ];
 const expensesCategory = [
   { value: "remittance", label: "Remittance" },
@@ -30,7 +37,7 @@ const expensesCategory = [
   { value: "other", label: "Other" },
 ];
 
-export const AddTransaction: React.FC<TransactionProps> = ({ onClose }) => {
+export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<{
     value: string;
@@ -114,6 +121,14 @@ export const AddTransaction: React.FC<TransactionProps> = ({ onClose }) => {
         options={selectedType === "expenses" ? expensesCategory : incomeCategory}
         onChange={handleCategoryChange}
       />
+      <Input
+        label="Card"
+        type="text"
+        class="popup-item category"
+        select
+        options={cards}
+        onChange={handleCategoryChange}
+      />
       <button className="btn log" type="submit">
         <span>Add</span>
       </button>
@@ -123,6 +138,3 @@ export const AddTransaction: React.FC<TransactionProps> = ({ onClose }) => {
     </form>
   );
 };
-interface TransactionProps {
-  onClose: () => void;
-}

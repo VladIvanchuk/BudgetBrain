@@ -1,11 +1,15 @@
 import { FC } from "react";
+import { NavLink } from "react-router-dom";
 import {} from "../hooks";
 import { Logo } from "./Logo";
 
 export const Header: FC = () => {
   return (
     <header>
-      <Logo />
+      <NavLink to="/home">
+        <Logo />
+      </NavLink>
+
       <div className="user">
         <div className="user-photo"></div>
         <span className="username">Hello {"User"}</span>

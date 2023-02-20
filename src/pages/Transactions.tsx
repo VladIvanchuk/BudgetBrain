@@ -1,13 +1,15 @@
 import { FC, useState } from "react";
-import { AddButton, AddTransaction, PopUp, Transaction } from "../components";
+import {
+  AddButton,
+  AddTransaction,
+  Loader,
+  Nothing,
+  PopUp,
+  Transaction,
+} from "../components";
 
 export const Transactions: FC = () => {
   const [openModal, setOpenModal] = useState(false);
-  const data = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
-  const tarns = data.map((el) => {
-    return <Transaction key={el} />;
-  });
 
   return (
     <>
@@ -19,7 +21,11 @@ export const Transactions: FC = () => {
           <h2>Transactions</h2>
           <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
         </div>
-        <div className="transactions-wrapper">{tarns}</div>
+        <div className="transactions-wrapper">
+          {/* {<Loader />} */}
+          {<Nothing />}
+          {/* {transactions} */}
+        </div>
       </div>
     </>
   );

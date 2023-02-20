@@ -28,12 +28,8 @@ export const LoginForm: FC = () => {
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
-      } else if (err.status === 400) {
-        dispatch((setError as any)("Missing Username or Password"));
-      } else if (err.status === 401) {
-        dispatch((setError as any)("Unauthorized"));
       } else {
-        dispatch((setError as any)("Login Failed"));
+        dispatch((setError as any)(err.data));
       }
     }
   });

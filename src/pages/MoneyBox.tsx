@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Nothing } from "../components";
 
 export const MoneyBox: FC = () => {
   return (
@@ -6,7 +7,7 @@ export const MoneyBox: FC = () => {
       <div className="block-header">
         <h2>MoneyBox</h2>
       </div>
-      <div className="block-wrapper"></div>
+      <div className="block-wrapper"> {<Nothing />}</div>
     </div>
   );
 };

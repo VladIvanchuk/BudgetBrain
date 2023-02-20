@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Loader, Nothing } from "../components";
 
 export const Profile: FC = () => {
   return (
@@ -7,10 +8,12 @@ export const Profile: FC = () => {
         <h2>Profile</h2>
       </div>
       <div className="block-wrapper">
+        {/* {<Loader />} */}
         <div className="profile-top">
           <div className="profile-img"></div>
           <span>Username</span>
         </div>
+        {<Nothing />}
       </div>
     </div>
   );

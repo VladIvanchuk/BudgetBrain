@@ -11,3 +11,5 @@ export { AddCardFrom } from "./forms/AddCard/AddCardFrom";
 export { PopUp } from "./PopUp";
 export { AddButton } from "./AddButton";
 export { Nothing } from "./Nothing";
+export { Loader } from "./Loader";
+export { CardById } from "./CardById";

@@ -2,7 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useGetCardsQuery } from "../../../redux/api/cardApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
+import { ICard } from "../../../types/card";
 import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
 import { schema } from "./config";
@@ -14,12 +16,6 @@ const incomeCategory = [
   { value: "gift", label: "Gift" },
   { value: "deposit", label: "Deposit" },
   { value: "other", label: "Other" },
-];
-const cards = [
-  { value: "cash", label: "Cash" },
-  { value: "salary", label: "My card *0288" },
-  { value: "remittance", label: "New card *9849" },
-  { value: "investment", label: "Privat *5987" },
 ];
 const expensesCategory = [
   { value: "remittance", label: "Remittance" },
@@ -43,14 +39,30 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
     value: string;
     label: string;
   } | null>(null);
+  const [selectedCard, setSelectedCard] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const { data = [] } = useGetCardsQuery({});
+  const dispatch = useDispatch();
+
+  const cards = data?.map((card: ICard) => ({
+    value: card.id,
+    label: card.cardName,
+  }));
+
   const handleCategoryChange = useCallback(
     (selectedOption: { value: string; label: string }) => {
       setSelectedCategory(selectedOption);
     },
     []
   );
-
-  const dispatch = useDispatch();
+  const handleCardChange = useCallback(
+    (selectedOption: { value: string; label: string }) => {
+      setSelectedCard(selectedOption);
+    },
+    []
+  );
 
   const form = useForm({
     mode: "onTouched",
@@ -59,6 +71,7 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
 
   const onSubmit = form.handleSubmit(async (data) => {
     data.category = selectedCategory && selectedCategory.value;
+    data.card = selectedCard && selectedCard.value;
     data.type = selectedType;
     try {
       console.log(data);
@@ -68,17 +81,17 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
       } else {
-        dispatch((setError as any)("Operation Failed"));
+        dispatch((setError as any)(err.data));
       }
     }
   });
   if (!selectedType) {
     return (
       <div className="type">
-        <button className="positive" onClick={() => setSelectedType("income")}>
+        <button className="positive" onClick={() => setSelectedType("1")}>
           Income
         </button>
-        <button className="negative" onClick={() => setSelectedType("expenses")}>
+        <button className="negative" onClick={() => setSelectedType("2")}>
           Expenses
         </button>
       </div>
@@ -124,10 +137,10 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
       <Input
         label="Card"
         type="text"
-        class="popup-item category"
+        class="popup-item category select-cards"
         select
         options={cards}
-        onChange={handleCategoryChange}
+        onChange={handleCardChange}
       />
       <button className="btn log" type="submit">
         <span>Add</span>

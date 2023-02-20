@@ -32,9 +32,9 @@ nav {
     }
   }
   .active {
-    background: rgb(141, 67, 220);
+    background: $purple;
     &:hover {
-      background: #924ed9;
+      background: $purple;
       color: #242456;
     }
   }

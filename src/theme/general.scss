@@ -65,27 +65,27 @@ main {
   h2 {
     padding: 0.5rem 0 2rem 0;
   }
-  button {
-    background: $gradient;
-    border-radius: 6px;
-    padding: 0.5rem 1.2rem;
-    color: #fff;
-    font-weight: 500;
-    font-size: 0.9rem;
-    position: relative;
-    padding-left: 2.5rem;
-    cursor: pointer;
+}
+.button {
+  background: $gradient;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 2.5rem;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    transform: scale(1.05);
     transition: 0.1s;
-    &:hover {
-      transform: scale(1.05);
-      transition: 0.1s;
-    }
-    svg {
-      position: absolute;
-      font-size: 0.8rem;
-      top: 29%;
-      left: 1rem;
-    }
+  }
+  svg {
+    position: absolute;
+    font-size: 0.8rem;
+    top: 29%;
+    left: 1rem;
   }
 }
 .block-wrapper {

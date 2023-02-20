@@ -1,16 +1,16 @@
 import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AddButton, AddTransaction, Nothing, PopUp, Transaction } from "../components";
+import {
+  AddButton,
+  AddTransaction,
+  Loader,
+  Nothing,
+  PopUp,
+  Transaction,
+} from "../components";
 
 export const Home: FC = () => {
-  const data = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const [openModal, setOpenModal] = useState(false);
-
-  const tarns = data
-    .map((el) => {
-      return <Transaction key={el} />;
-    })
-    .slice(0, 6);
 
   return (
     <>
@@ -24,7 +24,11 @@ export const Home: FC = () => {
               <h4>Last operations</h4>
               <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
             </div>
-            <div className="block-content">{tarns}</div>
+            <div className="block-content">
+              {/* {<Loader />} */}
+              {<Nothing />}
+              {/* {transactions} */}
+            </div>
             <NavLink className="operations-link" to="/transactions">
               See more ➤
             </NavLink>
@@ -36,7 +40,7 @@ export const Home: FC = () => {
               <div className="block-header">
                 <h4>Balance</h4>
               </div>
-              <div className="block-content"></div>
+              <div className="block-content">{<Nothing />}</div>
             </div>
           </div>
           <div className="home-container">
@@ -44,7 +48,7 @@ export const Home: FC = () => {
               <div className="block-header">
                 <h4>Saving goals</h4>
               </div>
-              <div className="block-content"></div>
+              <div className="block-content">{<Nothing />}</div>
             </div>
           </div>
         </div>

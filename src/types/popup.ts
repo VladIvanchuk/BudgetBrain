@@ -6,6 +6,3 @@ export interface IAddTransaction {
   sum: string;
   date: string;
 }
-export interface IAddCard {
-  name: string;
-}

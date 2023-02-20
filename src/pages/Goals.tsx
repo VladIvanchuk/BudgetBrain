@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { AddButton } from "../components";
+import { AddButton, Nothing } from "../components";
 
 export const Goals: FC = () => {
   return (
@@ -8,7 +8,7 @@ export const Goals: FC = () => {
         <h2>Goals</h2>
         <AddButton name="Add a new goal" />
       </div>
-      <div className="block-wrapper"></div>
+      <div className="block-wrapper">{<Nothing />} </div>
     </div>
   );
 };

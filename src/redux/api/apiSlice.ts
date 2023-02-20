@@ -1,19 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface RootState {
-  auth: {
-    token: string;
-  };
-}
-
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://budgetbrain.azurewebsites.net/api",
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
+    const token = localStorage.getItem("jwtToken");
     if (token) {
-      headers.set("authorization", `Bearer ${token}`);
+      headers.set("Authorization", `Bearer ${token}`);
     }
-    return headers; 
+    return headers;
   },
 });
 

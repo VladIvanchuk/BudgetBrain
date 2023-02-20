@@ -26,12 +26,11 @@ export const RegisterForm: FC = () => {
       dispatch((setSuccess as any)("You are registered! Now login"));
       navigate("/login");
     } catch (err: any) {
+      console.log(err);
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
-      } else if (err.status === 400) {
-        dispatch((setError as any)("Missing credentials"));
       } else {
-        dispatch((setError as any)("Register Failed"));
+        dispatch((setError as any)(err.data));
       }
     }
   });

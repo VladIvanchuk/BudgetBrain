@@ -4,12 +4,12 @@ const tooShortMessage = "minimum length - ${min} characters";
 const tooLongMessage = "maximum length - ${max} characters";
 
 export const schema: yup.SchemaOf<ISignUp> = yup.object().shape({
-  name: yup
+  firstName: yup
     .string()
     .min(2, tooShortMessage)
     .max(40, tooLongMessage)
     .required("Field is required"),
-  surname: yup.string().default("").min(2, tooShortMessage).max(40, tooLongMessage),
+  lastName: yup.string().default("").min(2, tooShortMessage).max(40, tooLongMessage),
   email: yup.string().email().required("Field is required"),
   password: yup
     .string()

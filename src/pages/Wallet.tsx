@@ -43,8 +43,7 @@ export const Wallet: React.FC = () => {
           <AddButton onClick={() => setOpenModal(true)} name="Add card" />
         </div>
         <div className="block-wrapper cards">
-          {isLoading ? <Loader /> : null}
-          {cards ? cards : <Nothing />}
+          {isLoading ? <Loader /> : cards?.length < 1 ? <Nothing /> : cards}
         </div>
       </div>
     </>

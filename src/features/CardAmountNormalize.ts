@@ -1,4 +1,4 @@
-export const CardAmountNormalize = (cardAmount: number) => {
+export const cardAmountNormalize = (cardAmount: number) => {
   const formattedAmount = "$" + cardAmount?.toLocaleString("ua-UA");
   return formattedAmount;
 };

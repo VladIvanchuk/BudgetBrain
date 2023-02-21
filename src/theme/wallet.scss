@@ -1,4 +1,4 @@
-$card: #000;
+$card: rgba(0, 0, 0, 0.7);
 .cards {
   padding-top: 1rem;
   height: 90%;
@@ -15,6 +15,7 @@ $card: #000;
   border-radius: 10px;
   padding: 0.9rem;
   transition: 0.2s;
+
   &:hover {
     transform: scale(1.05);
     transition: 0.2s;
@@ -34,6 +35,8 @@ $card: #000;
     font-size: 1.4rem;
     letter-spacing: 0.2rem;
     word-spacing: 0.5rem;
+
+    text-shadow: 1px 1px 2px #000000, -1px -1px 1px #fff;
   }
   .balance {
     position: absolute;
@@ -46,35 +49,4 @@ $card: #000;
 .cash {
   font-size: 1.4rem;
   font-weight: bold;
-}
-.card-by-id {
-  min-height: 20rem;
-  min-width: 35rem;
-  padding: 1rem 2rem;
-  .transactions {
-    overflow-y: scroll;
-    height: 10rem;
-    position: relative;
-  }
-  .card-info {
-    margin-bottom: 1.5rem;
-  }
-  .card-info-item {
-    @include flex-justify(sb);
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px dotted #000;
-  }
-
-  .buttons {
-    margin-bottom: 1rem;
-    @include flex-justify(sb);
-  }
-  .remove {
-    background: rgba(255, 68, 68, 0.9);
-  }
-  .edit {
-    background: rgb(73, 73, 73);
-  }
 }

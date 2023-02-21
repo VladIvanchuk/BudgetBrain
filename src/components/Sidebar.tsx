@@ -19,7 +19,7 @@ export const Sidebar: FC = () => {
     navigate("/login");
   };
   return (
-    <aside>
+    <div className="sidebar">
       <div className="sidebar-wrapper">
         <nav>
           <NavLink active-classname="active" to="/home">
@@ -45,6 +45,6 @@ export const Sidebar: FC = () => {
           Log out <GiEntryDoor />
         </button>
       </div>
-    </aside>
+    </div>
   );
 };

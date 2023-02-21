@@ -13,3 +13,4 @@ export { AddButton } from "./AddButton";
 export { Nothing } from "./Nothing";
 export { Loader } from "./Loader";
 export { CardById } from "./CardById";
+export { TransactionById } from "./TransactionById";

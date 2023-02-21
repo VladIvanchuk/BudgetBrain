@@ -1,3 +1,3 @@
 export { RequireAuth } from "./RequireAuth";
-export { CardNumberNormalize } from "./CardNumberNormalize";
-export { CardAmountNormalize } from "./CardAmountNormalize";
+export { cardNumberNormalize } from "./cardNumberNormalize";
+export { cardAmountNormalize } from "./cardAmountNormalize";

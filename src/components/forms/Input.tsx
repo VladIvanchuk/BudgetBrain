@@ -1,6 +1,4 @@
 import { UseFormRegisterReturn } from "react-hook-form";
-import CreatableSelect from "react-select/creatable";
-import Select from "react-select";
 
 export const Input: React.FC<IPropTypes> = (props) => {
   const input = (
@@ -11,31 +9,27 @@ export const Input: React.FC<IPropTypes> = (props) => {
       {...props.register}
     />
   );
-  const creatableSelect = (
-    <CreatableSelect
-      className="select"
-      options={props.options}
-      value={props.value}
-      onChange={props.onChange}
-      classNamePrefix="react-select"
-    />
-  );
   const select = (
-    <Select
-      className="select"
-      options={props.options}
-      value={props.value}
-      onChange={props.onChange}
-      classNamePrefix="react-select"
-    />
+    <div className="select">
+      <select defaultValue={""} value={props.value} {...props.register}>
+        <option value="" disabled hidden>
+          Choose value
+        </option>
+        {props.options?.map((el) => {
+          return (
+            <option key={el.value} value={el.value}>
+              {el.label}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
   return (
     <div className={"form-div " + props.class}>
       <label className="form-tag">{props.label}</label>
       <span className="error-message">{props.error?.message}</span>
-      {props.select && select}
-      {props.creatableSelect && creatableSelect}
-      {!props.select && !props.creatableSelect && input}
+      {props.select ? select : input}
       <span className="description">{props?.description}</span>
     </div>
   );
@@ -46,7 +40,6 @@ interface IPropTypes {
     label: string;
   }[];
   select?: boolean;
-  creatableSelect?: boolean;
   description?: string;
   class?: string;
   label: string;
@@ -58,5 +51,4 @@ interface IPropTypes {
     message?: string;
   };
   value?: any;
-  onChange?: (value: any) => void;
 }

@@ -2,47 +2,36 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useCreateCardMutation, useGetCardsQuery } from "../../../redux/api/cardApiSlice";
+import {
+  useCreateCardMutation,
+  useGetCardColorsQuery,
+  useGetCardsQuery,
+} from "../../../redux/api/cardApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
 import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
 import { schema } from "./config";
 
-const colors = [
-  { value: "#000", label: "Black" },
-  { value: "#2647ff", label: "Blue" },
-  { value: "#ff2626", label: "Red" },
-  { value: "#00cb11", label: "Green" },
-];
-
 export const AddCardFrom: React.FC<IPopUp> = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [selectedColor, setSelectedColor] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
   const [createCard, isLoading] = useCreateCardMutation();
+  const { data = [] } = useGetCardColorsQuery({});
   const { refetch } = useGetCardsQuery({});
 
-  const handleColorChange = useCallback(
-    (selectedOption: { value: string; label: string }) => {
-      setSelectedColor(selectedOption);
-    },
-    []
-  );
   const form = useForm({
     mode: "onTouched",
     resolver: yupResolver(schema),
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
-    data.color = selectedColor && selectedColor.value;
     try {
+      console.log(data);
       await createCard(data as any).unwrap();
       dispatch((setSuccess as any)("Card added"));
       onClose();
       refetch();
     } catch (err: any) {
+      console.log(err);
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
       } else {
@@ -78,12 +67,11 @@ export const AddCardFrom: React.FC<IPopUp> = ({ onClose }) => {
       />
       <Input
         label="Color"
-        options={colors}
+        options={data}
         select
         class="popup-item"
-        register={form.register("color")}
-        error={form.formState.errors.color}
-        onChange={handleColorChange}
+        register={form.register("colorValue")}
+        error={form.formState.errors.colorValue}
       />
       <button
         className={isLoading.status === "pending" ? "btn log sending" : "btn log"}

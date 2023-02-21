@@ -42,15 +42,15 @@ export const RegisterForm: FC = () => {
         label="Name"
         type="name"
         placeholder="Insert your name"
-        error={form.formState.errors.name}
-        register={form.register("name")}
+        error={form.formState.errors.firstName}
+        register={form.register("firstName")}
       />
       <Input
         label="Surname"
         type="surname"
         placeholder="Insert your surname"
-        error={form.formState.errors.surname}
-        register={form.register("surname")}
+        error={form.formState.errors.lastName}
+        register={form.register("lastName")}
       />
       <Input
         label="Email"

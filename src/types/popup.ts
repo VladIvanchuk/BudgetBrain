@@ -4,5 +4,7 @@ export interface IPopUp {
 export interface IAddTransaction {
   name: string;
   sum: string;
-  date: string;
+  createdAt: string;
+  category: string;
+  card: string;
 }

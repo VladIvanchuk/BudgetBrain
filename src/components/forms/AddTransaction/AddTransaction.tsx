@@ -1,8 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useGetCardsQuery } from "../../../redux/api/cardApiSlice";
+import {
+  useCreateOperationMutation,
+  useGetOperationCategoriesQuery,
+  useGetOperationsQuery,
+} from "../../../redux/api/operationApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
 import { ICard } from "../../../types/card";
 import { IPopUp } from "../../../types/popup";
@@ -35,34 +40,16 @@ const expensesCategory = [
 
 export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   const [selectedType, setSelectedType] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const [selectedCard, setSelectedCard] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const { data = [] } = useGetCardsQuery({});
   const dispatch = useDispatch();
+  const { data: allCards = [] } = useGetCardsQuery({});
+  const [createOperation, isLoading] = useCreateOperationMutation();
+  const { data = [] } = useGetOperationCategoriesQuery({});
+  const { refetch } = useGetOperationsQuery({});
 
-  const cards = data?.map((card: ICard) => ({
+  const cards = allCards?.map((card: ICard) => ({
     value: card.id,
     label: card.cardName,
   }));
-
-  const handleCategoryChange = useCallback(
-    (selectedOption: { value: string; label: string }) => {
-      setSelectedCategory(selectedOption);
-    },
-    []
-  );
-  const handleCardChange = useCallback(
-    (selectedOption: { value: string; label: string }) => {
-      setSelectedCard(selectedOption);
-    },
-    []
-  );
 
   const form = useForm({
     mode: "onTouched",
@@ -70,13 +57,13 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
-    data.category = selectedCategory && selectedCategory.value;
-    data.card = selectedCard && selectedCard.value;
     data.type = selectedType;
     try {
       console.log(data);
+      await createOperation(data as any).unwrap();
       dispatch((setSuccess as any)("Operation added"));
       onClose();
+      refetch();
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
@@ -106,43 +93,45 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
           type="text"
           class="popup-item"
           placeholder="Taxi"
-          error={form.formState.errors.name}
           register={form.register("name")}
+          error={form.formState.errors.name}
         />
         <Input
           label="Sum"
           type="number"
           class="popup-item"
           placeholder="0$"
-          error={form.formState.errors.sum}
           register={form.register("sum")}
+          error={form.formState.errors.sum}
         />
       </div>
       <Input
         label="Date"
         type="date"
         class="popup-item"
-        error={form.formState.errors.date}
-        register={form.register("date")}
+        error={form.formState.errors.createdAt}
+        register={form.register("createdAt")}
       />
       <Input
         label="Category"
-        type="text"
-        class="popup-item category"
-        creatableSelect
-        description="You can create your own categories, just type it"
         options={selectedType === "expenses" ? expensesCategory : incomeCategory}
-        onChange={handleCategoryChange}
+        select
+        class="popup-item category"
+        register={form.register("category")}
+        error={form.formState.errors.category}
       />
       <Input
         label="Card"
-        type="text"
+        options={cards}
         class="popup-item category select-cards"
         select
-        options={cards}
-        onChange={handleCardChange}
+        error={form.formState.errors.card}
+        register={form.register("card")}
       />
-      <button className="btn log" type="submit">
+      <button
+        className={isLoading.status === "pending" ? "btn log sending" : "btn log"}
+        type="submit"
+      >
         <span>Add</span>
       </button>
       <button className="back" onClick={() => setSelectedType("")}>

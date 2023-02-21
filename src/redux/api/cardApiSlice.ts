@@ -27,6 +27,12 @@ export const cardApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    getCardColors: builder.query({
+      query: () => ({
+        url: "/card/colors",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -35,4 +41,5 @@ export const {
   useGetCardsQuery,
   useGetCardByIdQuery,
   useDeleteCardByIdMutation,
+  useGetCardColorsQuery,
 } = cardApiSlice;

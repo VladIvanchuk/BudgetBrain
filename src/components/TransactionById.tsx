@@ -1,30 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { cardAmountNormalize } from "../features";
 import { removeActiveCard, selectActiveCard } from "../redux/activeCardSlice";
-import {
-  useDeleteCardByIdMutation,
-  useGetCardByIdQuery,
-  useGetCardsQuery,
-} from "../redux/api/cardApiSlice";
-import { ITransaction } from "../types/card";
 import { IPopUp } from "../types/popup";
 import { Loader } from "./Loader";
-import { Nothing } from "./Nothing";
-import { Transaction } from "./Transaction";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import { setError, setSuccess } from "../redux/auth/authSlice";
+import {
+  useDeleteOperationByIdMutation,
+  useGetOperationByIdQuery,
+  useGetOperationsQuery,
+} from "../redux/api/operationApiSlice";
 
-export const CardById: React.FC<IPopUp> = ({ onClose }) => {
+export const TransactionById: React.FC<IPopUp> = ({ onClose }) => {
   const dispatch = useDispatch();
   const activeCard = useSelector(selectActiveCard);
-  const { data = [], isLoading } = useGetCardByIdQuery(activeCard);
-  const { id, numberCard, cardAmount, cardName, operations } = data;
-  const [deleteCardById] = useDeleteCardByIdMutation(id);
-  const { refetch } = useGetCardsQuery({});
-
-  const transactions = operations?.map((operation: ITransaction) => {
-    return <Transaction key={operation.id} {...operation} />;
-  });
+  const { data = [], isLoading } = useGetOperationByIdQuery(activeCard);
+  const { id, name, sum, category, createdAt } = data;
+  const [deleteCardById] = useDeleteOperationByIdMutation(id);
+  const { refetch } = useGetOperationsQuery({});
 
   const handleDelete = async () => {
     try {
@@ -57,22 +49,20 @@ export const CardById: React.FC<IPopUp> = ({ onClose }) => {
           </div>
           <div className="card-info">
             <div className="card-info-item">
-              <h3>Card name:</h3>
-              <span>{cardName}</span>
+              <h3>Operation name:</h3>
+              <span>{name}</span>
             </div>
             <div className="card-info-item">
-              <h3>Card amount:</h3>
-              <span>{cardAmountNormalize(cardAmount)}</span>
+              <h3>Operation sum:</h3>
+              <span>{sum}</span>
             </div>
             <div className="card-info-item">
-              <h3>Card number:</h3>
-              <span>{numberCard}</span>
+              <h3>Operation category:</h3>
+              <span>{category}</span>
             </div>
-          </div>
-          <div>
-            <h3>Last operations:</h3>
-            <div className="transactions">
-              {operations?.length < 1 ? <Nothing /> : transactions}
+            <div className="card-info-item">
+              <h3>Operation date:</h3>
+              <span>{createdAt}</span>
             </div>
           </div>
         </div>

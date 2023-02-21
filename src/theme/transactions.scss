@@ -46,7 +46,7 @@
     background-color: rgba(255, 68, 68, 0.5);
     transition: 0.2s;
     &:hover {
-      background-color: rgba(255, 68, 68, 0.9);
+      background-color: $red;
       transition: 0.1s;
     }
   }
@@ -54,7 +54,7 @@
     background-color: rgba(8, 255, 8, 0.5);
     transition: 0.2s;
     &:hover {
-      background-color: rgba(8, 255, 8, 0.9);
+      background-color: $green;
       transition: 0.1s;
     }
   }

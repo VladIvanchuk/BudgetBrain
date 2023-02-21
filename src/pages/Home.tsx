@@ -8,9 +8,17 @@ import {
   PopUp,
   Transaction,
 } from "../components";
+import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
+import { ITransaction } from "../types/card";
 
 export const Home: FC = () => {
   const [openModal, setOpenModal] = useState(false);
+
+  const { data = [], isLoading } = useGetOperationsQuery({});
+
+  const transactions = data.map((operation: ITransaction) => {
+    return <Transaction key={operation?.id} {...operation} />;
+  });
 
   return (
     <>
@@ -25,9 +33,13 @@ export const Home: FC = () => {
               <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
             </div>
             <div className="block-content">
-              {/* {<Loader />} */}
-              {<Nothing />}
-              {/* {transactions} */}
+              {isLoading ? (
+                <Loader />
+              ) : transactions?.length < 1 ? (
+                <Nothing />
+              ) : (
+                transactions
+              )}
             </div>
             <NavLink className="operations-link" to="/transactions">
               See more ➤

@@ -3,18 +3,19 @@ export interface ICard {
   cardName: string;
   cardAmount: number;
   createdAt: string;
-  numberCard: number;
-  colorValue: string; 
+  numberCard: string;
+  colorValue: string;
 }
-export interface IActiveCardSlice {
-  id: number | null;
-  isOpen: boolean;
+export interface ICategory {
+  id: number;
+  name: string;
+  image: string;
 }
 
 export interface IAddCard {
   cardName: string;
   numberCard: string;
-  cardAmount: string;
+  cardAmount: number;
   colorValue: string;
 }
 export interface ITransaction {
@@ -22,6 +23,11 @@ export interface ITransaction {
   name: string;
   sum: number;
   type: number;
-  category: string;
+  category: {
+    id: number;
+    image: string;
+    name: string;
+  };
   createdAt: string;
+  homepage?: boolean;
 }

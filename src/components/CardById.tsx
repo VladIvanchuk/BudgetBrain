@@ -1,36 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import { cardAmountNormalize } from "../features";
-import { removeActiveCard, selectActiveCard } from "../redux/activeCardSlice";
+import { removeActivePopUp, selectActivePopUp } from "../redux/popUpSlice";
 import {
   useDeleteCardByIdMutation,
   useGetCardByIdQuery,
   useGetCardsQuery,
 } from "../redux/api/cardApiSlice";
 import { ITransaction } from "../types/card";
-import { IPopUp } from "../types/popup";
 import { Loader } from "./Loader";
 import { Nothing } from "./Nothing";
 import { Transaction } from "./Transaction";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import { setError, setSuccess } from "../redux/auth/authSlice";
 
-export const CardById: React.FC<IPopUp> = ({ onClose }) => {
+export const CardById: React.FC = () => {
   const dispatch = useDispatch();
-  const activeCard = useSelector(selectActiveCard);
+  const activeCard = useSelector(selectActivePopUp);
   const { data = [], isLoading } = useGetCardByIdQuery(activeCard);
   const { id, numberCard, cardAmount, cardName, operations } = data;
   const [deleteCardById] = useDeleteCardByIdMutation(id);
   const { refetch } = useGetCardsQuery({});
+  console.log(operations);
 
   const transactions = operations?.map((operation: ITransaction) => {
-    return <Transaction key={operation.id} {...operation} />;
+    return <Transaction key={operation?.id} {...operation} />;
   });
 
   const handleDelete = async () => {
     try {
       await deleteCardById(id);
       dispatch((setSuccess as any)("Card deleted"));
-      dispatch(removeActiveCard());
+      dispatch(removeActivePopUp());
       refetch();
     } catch (err: any) {
       if (!err?.status) {
@@ -70,7 +70,7 @@ export const CardById: React.FC<IPopUp> = ({ onClose }) => {
             </div>
           </div>
           <div>
-            <h3>Last operations:</h3>
+            <h3>Recent Transactions:</h3>
             <div className="transactions">
               {operations?.length < 1 ? <Nothing /> : transactions}
             </div>

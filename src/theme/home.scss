@@ -10,7 +10,7 @@
   }
   .home-container {
     width: 100%;
-    height: 48%;
+    height: 100%;
     .home-block {
       @include full-size;
       @include background-blur;
@@ -21,20 +21,63 @@
     padding: 1.25rem;
     position: relative;
     height: 100%;
+    .button {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
   }
-  .operations-link {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+  .currency {
+    height: 16rem;
+    margin-top: 2%;
+    .block-content {
+      margin: 1rem 0;
+    }
   }
-
   .block-content {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     position: relative;
-  }
+    table {
+      width: 100%;
+      text-align: left;
+      border-collapse: collapse;
+      .el {
+        background: $gradient;
+        font-weight: bold;
+        border-radius: $rad;
+        padding: 0.2rem 0.5rem;
+      }
+      .green {
+        color: $green;
+      }
+      .red {
+        color: $red;
+      }
 
+      td {
+        width: 25%;
+        padding: 0.6rem;
+      }
+      th {
+        padding: 0.5rem 0.7rem;
+      }
+      .table-row {
+        border-bottom: 1px solid rgb(255, 255, 255);
+      }
+      .thead-row {
+        border-bottom: 2px solid rgb(255, 255, 255);
+      }
+    }
+  }
+  .currency-select {
+    border-radius: $rad;
+    width: 7rem;
+    margin: 0;
+    color: #000;
+  }
   .operations {
     @include background-blur;
-    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 65%;
   }
 }

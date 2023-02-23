@@ -9,14 +9,20 @@
   padding: 0.5rem;
   display: flex;
   border-radius: 1rem;
+  cursor: pointer;
 
   .icon {
     flex-shrink: 0;
     width: 3rem;
     height: 3rem;
-    background-color: #fff;
+    background: $gradient;
     border-radius: 50%;
     margin-right: 1rem;
+    @include flex-full-center;
+    svg {
+      color: #fff;
+      font-size: 2rem;
+    }
   }
   .text {
     @include flex-justify(sb);
@@ -31,13 +37,28 @@
   .top {
     font-size: 1.05rem;
     font-weight: 600;
+    .name {
+      width: 60%;
+    }
   }
 }
 .negative {
   background-color: rgba(255, 68, 68, 0.15);
+  transition: 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 68, 68, 0.5);
+    transition: 0.2s;
+  }
 }
 .positive {
   background-color: rgba(8, 255, 8, 0.15);
+  transition: 0.2s;
+
+  &:hover {
+    background-color: rgba(8, 255, 8, 0.5);
+    transition: 0.2s;
+  }
 }
 .type {
   margin: 1rem;

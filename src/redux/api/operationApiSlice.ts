@@ -27,9 +27,9 @@ export const operationApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
-    getOperationCategories: builder.query({
-      query: () => ({
-        url: "/operation/enums",
+    getCategories: builder.query({
+      query: (id) => ({
+        url: `/category/${id}`,
         method: "GET",
       }),
     }),
@@ -41,5 +41,5 @@ export const {
   useGetOperationsQuery,
   useGetOperationByIdQuery,
   useDeleteOperationByIdMutation,
-  useGetOperationCategoriesQuery,
+  useGetCategoriesQuery,
 } = operationApiSlice;

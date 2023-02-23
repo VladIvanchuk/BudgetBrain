@@ -123,6 +123,10 @@
   min-height: 10rem;
   min-width: 35rem;
   padding: 1rem 2rem;
+  span {
+    width: 50%;
+    text-align: right;
+  }
   .transactions {
     overflow-y: scroll;
     height: 10rem;

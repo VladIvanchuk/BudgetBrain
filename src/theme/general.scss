@@ -6,6 +6,17 @@
   border: none;
   list-style: none;
 }
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+::-webkit-scrollbar-track {
+  background: $transp;
+  border-radius: 5rem;
+}
+::-webkit-scrollbar-thumb {
+  background: $gradient;
+  border-radius: 5rem;
+}
 body {
   background-color: $page;
   color: #fff;
@@ -93,18 +104,6 @@ main {
 }
 .Toastify {
   position: absolute;
-}
-
-::-webkit-scrollbar {
-  width: 0.3rem;
-}
-::-webkit-scrollbar-track {
-  background: $transp;
-  border-radius: 5rem;
-}
-::-webkit-scrollbar-thumb {
-  background: $gradient;
-  border-radius: 5rem;
 }
 .nothing {
   font-size: 1.3rem;

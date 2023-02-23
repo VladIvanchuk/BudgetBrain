@@ -1,80 +1,42 @@
-$green: #008744;
-$yellow: #ffa700;
-$white: #eee;
-
-.loader {
+.loader-wrapper {
   position: absolute;
-  width: 70px;
+  top: 45%;
   left: 50%;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  &:before {
-    content: "";
-    display: block;
-    padding-top: 100%;
+  svg {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
   }
-}
 
-.circular {
-  animation: rotate 2s linear infinite;
-  height: 100%;
-  transform-origin: center center;
-  width: 100%;
-  position: absolute;
-  margin: auto;
-}
-
-.path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-  stroke-linecap: round;
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes dash {
-  0% {
+  circle {
+    fill: none;
+    stroke: $blue;
+    stroke-width: 2;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
   }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
-  }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
-}
 
-@keyframes color {
-  100%,
-  0% {
-    stroke: $purple;
+  @keyframes rotate4 {
+    100% {
+      transform: rotate(360deg);
+    }
   }
-  40% {
-    stroke: $blue;
-  }
-  66% {
-    stroke: $green;
-  }
-  80%,
-  90% {
-    stroke: $yellow;
-  }
-}
 
-// demo-specific
-body {
-  background-color: $white;
-}
-.showbox {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  @keyframes dash4 {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
 }

@@ -1,7 +1,8 @@
 import { FcSimCardChip } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { cardAmountNormalize, cardNumberNormalize } from "../features";
-import { setActiveCard } from "../redux/activeCardSlice";
+import { cardType } from "../features/cardType";
+import { setActivePopUp } from "../redux/popUpSlice";
 import { ICard } from "../types/card";
 
 export const Card: React.FC<ICard> = (props) => {
@@ -13,10 +14,11 @@ export const Card: React.FC<ICard> = (props) => {
       <div
         className="card"
         style={{ backgroundColor: colorValue }}
-        onClick={() => dispatch(setActiveCard({ id: id }))}
+        onClick={() => dispatch(setActivePopUp({ id: id }))}
       >
         <div className="name">{cardName}</div>
         <FcSimCardChip />
+        <div className="card-type">{cardType(numberCard)}</div>
         <div className="number">{cardNumberNormalize(numberCard)}</div>
         <div className="balance">{cardAmountNormalize(cardAmount)}</div>
       </div>

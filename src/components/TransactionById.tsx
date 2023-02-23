@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeActiveCard, selectActiveCard } from "../redux/activeCardSlice";
-import { IPopUp } from "../types/popup";
+import { removeActivePopUp, selectIsPopUpOpen } from "../redux/popUpSlice";
 import { Loader } from "./Loader";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import { setError, setSuccess } from "../redux/auth/authSlice";
@@ -9,21 +8,23 @@ import {
   useGetOperationByIdQuery,
   useGetOperationsQuery,
 } from "../redux/api/operationApiSlice";
+import { format, parseISO } from "date-fns";
 
-export const TransactionById: React.FC<IPopUp> = ({ onClose }) => {
+export const TransactionById: React.FC = () => {
   const dispatch = useDispatch();
-  const activeCard = useSelector(selectActiveCard);
-  const { data = [], isLoading } = useGetOperationByIdQuery(activeCard);
-  const { id, name, sum, category, createdAt } = data;
+  const activeCard = useSelector(selectIsPopUpOpen);
+  const { data = [], isLoading, isSuccess } = useGetOperationByIdQuery(activeCard);
+  const { id, name, sum, category, createdAt, cardName } = data;
   const [deleteCardById] = useDeleteOperationByIdMutation(id);
   const { refetch } = useGetOperationsQuery({});
+  const formattedDate = isSuccess && format(parseISO(createdAt), "dd MMMM yyyy");
 
   const handleDelete = async () => {
     try {
       await deleteCardById(id);
       dispatch((setSuccess as any)("Card deleted"));
-      dispatch(removeActiveCard());
       refetch();
+      dispatch(removeActivePopUp());
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
@@ -49,20 +50,24 @@ export const TransactionById: React.FC<IPopUp> = ({ onClose }) => {
           </div>
           <div className="card-info">
             <div className="card-info-item">
-              <h3>Operation name:</h3>
+              <h3>Name:</h3>
               <span>{name}</span>
             </div>
             <div className="card-info-item">
-              <h3>Operation sum:</h3>
+              <h3>Sum:</h3>
               <span>{sum}</span>
             </div>
             <div className="card-info-item">
-              <h3>Operation category:</h3>
+              <h3>Category:</h3>
               <span>{category}</span>
             </div>
             <div className="card-info-item">
-              <h3>Operation date:</h3>
-              <span>{createdAt}</span>
+              <h3>Date:</h3>
+              <span>{formattedDate}</span>
+            </div>
+            <div className="card-info-item">
+              <h3>Card:</h3>
+              <span>{cardName}</span>
             </div>
           </div>
         </div>

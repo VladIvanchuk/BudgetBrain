@@ -1,54 +1,35 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useGetCardsQuery } from "../../../redux/api/cardApiSlice";
 import {
   useCreateOperationMutation,
-  useGetOperationCategoriesQuery,
+  useGetCategoriesQuery,
   useGetOperationsQuery,
 } from "../../../redux/api/operationApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
-import { ICard } from "../../../types/card";
+import { ICard, ICategory, ITransaction } from "../../../types/card";
 import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
 import { schema } from "./config";
 
-const incomeCategory = [
-  { value: "salary", label: "Salary" },
-  { value: "remittance", label: "Remittance" },
-  { value: "investment", label: "Investment" },
-  { value: "gift", label: "Gift" },
-  { value: "deposit", label: "Deposit" },
-  { value: "other", label: "Other" },
-];
-const expensesCategory = [
-  { value: "remittance", label: "Remittance" },
-  { value: "investment", label: "Investment" },
-  { value: "transport", label: "Transport" },
-  { value: "leisure", label: "Leisure" },
-  { value: "sport", label: "Sport and Health" },
-  { value: "gift", label: "Gift" },
-  { value: "shopping", label: "Shopping" },
-  { value: "food", label: "Food and drinks" },
-  { value: "education", label: "Education" },
-  { value: "Internet", label: "Internet and communication" },
-  { value: "housing", label: "Housing fee" },
-  { value: "utility", label: "Utility payments" },
-  { value: "other", label: "Other" },
-];
-
 export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState<number>(0);
   const dispatch = useDispatch();
   const { data: allCards = [] } = useGetCardsQuery({});
-  const [createOperation, isLoading] = useCreateOperationMutation();
-  const { data = [] } = useGetOperationCategoriesQuery({});
+  const { data: categories = [] } = useGetCategoriesQuery(selectedType);
   const { refetch } = useGetOperationsQuery({});
+  const [createOperation, isLoading] = useCreateOperationMutation();
 
-  const cards = allCards?.map((card: ICard) => ({
+  const cards = allCards.map((card: ICard) => ({
     value: card.id,
     label: card.cardName,
+  }));
+
+  const categoryOptions = categories.map((category: ICategory) => ({
+    value: category.id,
+    label: category.name,
   }));
 
   const form = useForm({
@@ -60,7 +41,7 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
     data.type = selectedType;
     try {
       console.log(data);
-      await createOperation(data as any).unwrap();
+      await createOperation(data as ITransaction).unwrap();
       dispatch((setSuccess as any)("Operation added"));
       onClose();
       refetch();
@@ -75,10 +56,10 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   if (!selectedType) {
     return (
       <div className="type">
-        <button className="positive" onClick={() => setSelectedType("1")}>
+        <button className="positive" onClick={() => setSelectedType(1)}>
           Income
         </button>
-        <button className="negative" onClick={() => setSelectedType("2")}>
+        <button className="negative" onClick={() => setSelectedType(2)}>
           Expenses
         </button>
       </div>
@@ -114,19 +95,19 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
       />
       <Input
         label="Category"
-        options={selectedType === "expenses" ? expensesCategory : incomeCategory}
+        options={categoryOptions}
         select
         class="popup-item category"
-        register={form.register("category")}
-        error={form.formState.errors.category}
+        register={form.register("categoryName")}
+        error={form.formState.errors.categoryName}
       />
       <Input
         label="Card"
         options={cards}
         class="popup-item category select-cards"
         select
-        error={form.formState.errors.card}
-        register={form.register("card")}
+        error={form.formState.errors.cardId}
+        register={form.register("cardId")}
       />
       <button
         className={isLoading.status === "pending" ? "btn log sending" : "btn log"}
@@ -134,7 +115,7 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
       >
         <span>Add</span>
       </button>
-      <button className="back" onClick={() => setSelectedType("")}>
+      <button className="back" onClick={() => setSelectedType(0)}>
         <span>&#10140;</span>Back
       </button>
     </form>

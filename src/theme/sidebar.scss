@@ -21,14 +21,15 @@ nav {
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.02rem;
-    width: 100%;
+    width: 12rem;
     color: #fff;
     border-radius: 6px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
     transition: 0.2s;
     &:hover {
       background-color: rgba(12 15 25 / 30%);
       transition: 0.2s;
+      padding: 0.5rem 1.5rem 0.5rem 1rem;
     }
   }
   .active {
@@ -36,6 +37,7 @@ nav {
     &:hover {
       background: $purple;
       color: #242456;
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
     }
   }
   svg {

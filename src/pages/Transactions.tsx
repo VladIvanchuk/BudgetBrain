@@ -9,7 +9,7 @@ import {
   Transaction,
   TransactionById,
 } from "../components";
-import { removeActiveCard, selectIsCardOpen } from "../redux/activeCardSlice";
+import { selectIsPopUpOpen, removeActivePopUp } from "../redux/popUpSlice";
 import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
 import { ITransaction } from "../types/card";
 
@@ -17,19 +17,21 @@ export const Transactions: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data = [], isLoading } = useGetOperationsQuery({});
   const dispatch = useDispatch();
-  const isCardOpen = useSelector(selectIsCardOpen);
+  const isCardOpen = useSelector(selectIsPopUpOpen);
 
-  const transactions = data.map((operation: ITransaction) => {
-    return <Transaction key={operation?.id} {...operation} />;
-  });
+  const transactions = data
+    .map((operation: ITransaction) => {
+      return <Transaction key={operation?.id} {...operation} />;
+    })
+    .reverse();
   return (
     <>
       <PopUp
-        name="Card overview"
+        name="Operation overview"
         open={isCardOpen}
-        onClose={() => dispatch(removeActiveCard())}
+        onClose={() => dispatch(removeActivePopUp())}
       >
-        <TransactionById onClose={() => setOpenModal(false)} />
+        <TransactionById />
       </PopUp>
       <PopUp name="Add Transaction" open={openModal} onClose={() => setOpenModal(false)}>
         <AddTransaction onClose={() => setOpenModal(false)} />

@@ -45,6 +45,15 @@ $card: rgba(0, 0, 0, 0.7);
     font-weight: 600;
     font-size: 1.1rem;
   }
+  .card-type {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    svg {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+  }
 }
 .cash {
   font-size: 1.4rem;

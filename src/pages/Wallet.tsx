@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   AddButton,
   AddCardFrom,
@@ -10,14 +10,12 @@ import {
   CardById,
 } from "../components";
 import { useGetCardsQuery } from "../redux/api/cardApiSlice";
-import { selectIsCardOpen, removeActiveCard } from "../redux/activeCardSlice";
+import { selectIsPopUpOpen, removeActivePopUp } from "../redux/popUpSlice";
 import { ICard } from "../types/card";
 
 export const Wallet: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data = [], isLoading } = useGetCardsQuery({});
-  const dispatch = useDispatch();
-  const isCardOpen = useSelector(selectIsCardOpen);
   const cards = data
     .map((card: ICard) => {
       return <Card key={card.id} {...card} />;
@@ -28,10 +26,10 @@ export const Wallet: React.FC = () => {
     <>
       <PopUp
         name="Card overview"
-        open={isCardOpen}
-        onClose={() => dispatch(removeActiveCard())}
+        open={useSelector(selectIsPopUpOpen)}
+        onClose={() => removeActivePopUp()}
       >
-        <CardById onClose={() => setOpenModal(false)} />
+        <CardById />
       </PopUp>
       <PopUp name="Add card" open={openModal} onClose={() => setOpenModal(false)}>
         <AddCardFrom onClose={() => setOpenModal(false)} />

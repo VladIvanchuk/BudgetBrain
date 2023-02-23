@@ -2,27 +2,30 @@ import { cardAmountNormalize } from "../features";
 import { ITransaction } from "../types/card";
 import { parseISO, format } from "date-fns";
 import { useDispatch } from "react-redux";
-import { setActiveCard } from "../redux/activeCardSlice";
+import { setActivePopUp } from "../redux/popUpSlice";
 
 export const Transaction: React.FC<ITransaction> = (props) => {
-  const { id, name, sum, type, category, createdAt } = props;
+  const { id, name, sum, type, category, createdAt, homepage } = props;
   const isPositive = type === 1 ? true : false;
+
   const formattedDate = format(parseISO(createdAt), "dd MMMM yyyy");
   const dispatch = useDispatch();
+
+  const shortName = name.length > 12 ? name.slice(0, 12) + "..." : name;
 
   return (
     <div
       className={isPositive ? "transaction  positive" : "transaction  negative"}
-      onClick={() => dispatch(setActiveCard({ id: id }))}
+      onClick={() => dispatch(setActivePopUp({ id: id }))}
     >
-      <div className="icon"></div>
+      <div dangerouslySetInnerHTML={{ __html: category.image }} className="icon"></div>
       <div className="text">
         <div className="top">
-          <span className="name">{name}</span>
+          <span className="name">{homepage ? shortName : name}</span>
           <span className="date">{formattedDate}</span>
         </div>
         <div className="bottom">
-          <span className="category">{category}</span>
+          <span className="category">{category.name}</span>
           <span className="sum">
             {isPositive ? "+ " : "- "}
             {cardAmountNormalize(sum)}

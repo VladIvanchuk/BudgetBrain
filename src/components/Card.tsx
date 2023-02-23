@@ -1,7 +1,7 @@
 import { FcSimCardChip } from "react-icons/fc";
 import { MdOutlineContactless } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { cardAmountNormalize, CardNumberNormalize } from "../features";
+import { cardAmountNormalize } from "../features";
 import { cardType } from "../features/cardType";
 import { setActivePopUp } from "../redux/popUpSlice";
 import { ICard } from "../types/card";
@@ -19,7 +19,7 @@ export const Card: React.FC<ICard> = (props) => {
             {cardType(numberCard)}
             <FcSimCardChip className="chip" />
             <MdOutlineContactless className="contactless" />
-            <p className="number">{CardNumberNormalize(numberCard)}</p>
+            <p className="number">{numberCard}</p>
             <p className="balance">{cardAmountNormalize(cardAmount)}</p>
             <p className="name">BRUCE WAYNE</p>
           </div>

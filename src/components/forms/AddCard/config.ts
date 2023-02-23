@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import { IAddCard } from "../../../types/card";
+// eslint-disable-next-line no-template-curly-in-string
 const tooShortMessage = "minimum length - ${min} characters";
+// eslint-disable-next-line no-template-curly-in-string
 const tooLongMessage = "maximum length - ${max} characters";
 
 export const schema: yup.SchemaOf<IAddCard> = yup.object().shape({

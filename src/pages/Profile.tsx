@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Loader, Nothing } from "../components";
+import { Nothing } from "../components";
 
 export const Profile: FC = () => {
   return (

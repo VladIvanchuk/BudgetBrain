@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import { ISignUp } from "../../../types/auth";
+// eslint-disable-next-line no-template-curly-in-string
 const tooShortMessage = "minimum length - ${min} characters";
+// eslint-disable-next-line no-template-curly-in-string
 const tooLongMessage = "maximum length - ${max} characters";
 
 export const schema: yup.SchemaOf<ISignUp> = yup.object().shape({

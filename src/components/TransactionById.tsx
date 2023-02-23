@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeActivePopUp, selectIsPopUpOpen } from "../redux/popUpSlice";
+import { removeActivePopUp, selectActivePopUp } from "../redux/popUpSlice";
 import { Loader } from "./Loader";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import { setError, setSuccess } from "../redux/auth/authSlice";
@@ -12,7 +12,7 @@ import { format, parseISO } from "date-fns";
 
 export const TransactionById: React.FC = () => {
   const dispatch = useDispatch();
-  const activeCard = useSelector(selectIsPopUpOpen);
+  const activeCard = useSelector(selectActivePopUp);
   const { data = [], isLoading, isSuccess } = useGetOperationByIdQuery(activeCard);
   const { id, name, sum, category, createdAt, cardName } = data;
   const [deleteCardById] = useDeleteOperationByIdMutation(id);
@@ -59,7 +59,7 @@ export const TransactionById: React.FC = () => {
             </div>
             <div className="card-info-item">
               <h3>Category:</h3>
-              <span>{category}</span>
+              <span>{category.name}</span>
             </div>
             <div className="card-info-item">
               <h3>Date:</h3>

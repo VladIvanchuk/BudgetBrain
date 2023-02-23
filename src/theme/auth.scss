@@ -57,6 +57,39 @@ form {
   padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
+  .to {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.5s;
+    letter-spacing: 2px;
+    font-weight: bold;
+    span {
+      position: absolute;
+      display: block;
+      &:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $purple);
+        animation: btn-anim1 1.5s linear infinite;
+      }
+    }
+  }
+}
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 100%;
+  }
 }
 .form-tag {
   position: absolute;
@@ -78,7 +111,7 @@ form {
   font-size: 1rem;
   font-weight: 700;
   padding: 0.5rem 0rem;
-  background: #3614dd;
+  background: $blue-dark;
   color: #fff;
   border: none;
   border-radius: 0.2rem;

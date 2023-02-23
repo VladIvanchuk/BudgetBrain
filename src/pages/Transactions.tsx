@@ -41,7 +41,7 @@ export const Transactions: FC = () => {
           <h2>Transactions</h2>
           <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
         </div>
-        <div className="transactions-wrapper">
+        <div className="block-wrapper transactions">
           {isLoading ? <Loader /> : transactions?.length < 1 ? <Nothing /> : transactions}
         </div>
       </div>

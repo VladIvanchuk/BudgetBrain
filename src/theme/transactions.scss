@@ -1,12 +1,9 @@
-.transactions-wrapper {
-  overflow-y: scroll;
-  height: 90%;
-  padding: 0 1rem 4rem 1rem;
+.transactions {
 }
 
 .transaction {
   margin: 1rem 0;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   display: flex;
   border-radius: 1rem;
   cursor: pointer;
@@ -68,7 +65,8 @@
     transition: 0.2s;
     &:hover {
       background-color: $red;
-      transition: 0.1s;
+      transition: 0.2s;
+      transform: translateY(-0.2em);
     }
   }
   .positive {
@@ -76,7 +74,8 @@
     transition: 0.2s;
     &:hover {
       background-color: $green;
-      transition: 0.1s;
+      transition: 0.2s;
+      transform: translateY(-0.2em);
     }
   }
   button {

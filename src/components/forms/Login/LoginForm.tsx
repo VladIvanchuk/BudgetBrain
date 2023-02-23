@@ -52,7 +52,10 @@ export const LoginForm: FC = () => {
         register={form.register("password")}
       />
       <div className="form-confirm">
-        <Link to="/sign-up">Register</Link>
+        <Link className="to" to="/sign-up">
+          Register
+          <span></span>
+        </Link>
         <button
           className={isLoading.status === "pending" ? "btn log sending" : "btn log"}
           type="submit"

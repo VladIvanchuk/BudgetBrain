@@ -4,7 +4,9 @@ import { BsPlusLg } from "react-icons/bs";
 export const AddButton: React.FC<IButton> = ({ onClick, name }) => {
   return (
     <button className="button" onClick={onClick}>
-      <BsPlusLg />
+      <div className="icon">
+        <BsPlusLg />
+      </div>
       <span>{name}</span>
     </button>
   );

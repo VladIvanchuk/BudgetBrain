@@ -146,6 +146,17 @@
   .buttons {
     margin-bottom: 1rem;
     @include flex-justify(sb);
+    .button {
+      padding: 1rem 1rem;
+      transition: 0.2s;
+      box-shadow: none;
+      svg {
+        margin-right: 0.5rem;
+      }
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
   .remove {
     background: $red;

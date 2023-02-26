@@ -7,11 +7,7 @@ interface ExchangeRates {
   success: boolean;
 }
 
-export const useCurrency = (
-  date: string,
-  currencies: string[],
-  base: string | undefined
-) => {
+export const useCurrencyRates = (date: string, base: string, currencies: string[]) => {
   const dispatch = useDispatch();
   const currencyString = currencies.join(",");
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);

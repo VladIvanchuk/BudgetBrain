@@ -20,7 +20,6 @@ export const CardById: React.FC = () => {
   const { id, numberCard, cardAmount, cardName, operations } = data;
   const [deleteCardById] = useDeleteCardByIdMutation(id);
   const { refetch } = useGetCardsQuery({});
-  console.log(operations);
 
   const transactions = operations?.map((operation: ITransaction) => {
     return <Transaction key={operation?.id} {...operation} />;

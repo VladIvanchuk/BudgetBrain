@@ -29,7 +29,7 @@ export const cardApiSlice = apiSlice.injectEndpoints({
     }),
     getCardColors: builder.query({
       query: () => ({
-        url: "/card/colors",
+        url: "/colors",
         method: "GET",
       }),
     }),

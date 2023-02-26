@@ -15,3 +15,4 @@ export { Loader } from "./Loader";
 export { CardById } from "./CardById";
 export { TransactionById } from "./TransactionById";
 export { Currency } from "./Currency";
+export { Analytics } from "./Analytics";

@@ -17,19 +17,18 @@ import { schema } from "./config";
 export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   const [selectedType, setSelectedType] = useState<number>(0);
   const dispatch = useDispatch();
-  const { data: allCards = [] } = useGetCardsQuery({});
   const { data: categories = [] } = useGetCategoriesQuery(selectedType);
   const { refetch } = useGetOperationsQuery({});
   const [createOperation, isLoading] = useCreateOperationMutation();
+  const { data: allCards = [] } = useGetCardsQuery({});
 
+  const categoryOptions = categories.map((category: ICategory) => ({
+    value: category.name,
+    label: category.name,
+  }));
   const cards = allCards.map((card: ICard) => ({
     value: card.id,
     label: card.cardName,
-  }));
-
-  const categoryOptions = categories.map((category: ICategory) => ({
-    value: category.id,
-    label: category.name,
   }));
 
   const form = useForm({

@@ -119,14 +119,16 @@
     font-weight: bold;
   }
 }
-.card-by-id {
-  min-height: 10rem;
-  min-width: 35rem;
-  padding: 1rem 2rem;
+.card-info-item {
   span {
     width: 50%;
     text-align: right;
   }
+}
+.card-by-id {
+  min-height: 10rem;
+  min-width: 35rem;
+  padding: 1rem 2rem;
   .transactions {
     overflow-y: scroll;
     height: 10rem;

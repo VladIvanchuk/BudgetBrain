@@ -1,7 +1,11 @@
 import { FC } from "react";
-import { Nothing } from "../components";
+import { useGetUserQuery } from "../redux/api/userApiSlice";
 
 export const Profile: FC = () => {
+  const { data = {} } = useGetUserQuery({});
+  const { firstName, lastName, email } = data;
+  console.log(data);
+
   return (
     <div className="main-container">
       <div className="block-header">
@@ -11,9 +15,14 @@ export const Profile: FC = () => {
         {/* {<Loader />} */}
         <div className="profile-top">
           <div className="profile-img"></div>
-          <span>Username</span>
+          <div className="user-info">
+            <div className="name">
+              <span>{firstName}</span>
+              <span>{lastName}</span>
+            </div>
+            <span>{email}</span>
+          </div>
         </div>
-        {<Nothing />}
       </div>
     </div>
   );

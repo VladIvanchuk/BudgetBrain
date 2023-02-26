@@ -1,11 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import { FC } from "react";
-import { GiChest, GiEntryDoor, GiStairsGoal } from "react-icons/gi";
+import { GiEntryDoor } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt } from "react-icons/bi";
-import { BsHouseDoorFill } from "react-icons/bs";
+import { BsHouseDoorFill, BsCurrencyExchange } from "react-icons/bs";
 import { IoWalletSharp } from "react-icons/io5";
 import { logOut, setSuccess } from "../redux/auth/authSlice";
 
@@ -31,12 +30,10 @@ export const Sidebar: FC = () => {
           <NavLink active-classname="active" to="/wallet">
             <IoWalletSharp /> Wallet
           </NavLink>
-          <NavLink active-classname="active" to="/money-box">
-            <GiChest /> MoneyBox
+          <NavLink active-classname="active" to="/currencies">
+            <BsCurrencyExchange /> Currencies
           </NavLink>
-          <NavLink active-classname="active" to="/goals">
-            <GiStairsGoal /> Goals
-          </NavLink>
+
           <NavLink active-classname="active" to="/profile">
             <CgProfile /> Profile
           </NavLink>

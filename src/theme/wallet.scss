@@ -1,14 +1,13 @@
 .cards {
   padding-top: 1rem;
-  display: flex;
+  @include flex-justify(sb);
   flex-wrap: wrap;
 }
 .flip-card {
   width: 22.5rem;
   height: 14.43rem;
   perspective: 1000px;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   cursor: pointer;
 
   .heading {

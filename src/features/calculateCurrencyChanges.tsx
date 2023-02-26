@@ -1,4 +1,4 @@
-import { useCurrency } from "../hooks/useCurrency";
+import { useCurrencyRates } from "../hooks/useCurrencyRates";
 
 interface CurrencyChange {
   amount: string;
@@ -15,22 +15,22 @@ interface CurrencyChanges {
 
 export const CalculateCurrencyChanges = (
   currenciesToShow: string[],
-  base: string | undefined
+  base: string
 ): CurrencyChanges => {
-  const currentData: CurrencyData | undefined = useCurrency(
+  const currentData: CurrencyData | undefined = useCurrencyRates(
     "2023-02-23",
-    currenciesToShow,
-    base
+    base,
+    currenciesToShow
   );
-  const dayAgoData: CurrencyData | undefined = useCurrency(
+  const dayAgoData: CurrencyData | undefined = useCurrencyRates(
     "2023-02-13",
-    currenciesToShow,
-    base
+    base,
+    currenciesToShow
   );
-  const monthAgoData: CurrencyData | undefined = useCurrency(
+  const monthAgoData: CurrencyData | undefined = useCurrencyRates(
     "2023-01-23",
-    currenciesToShow,
-    base
+    base,
+    currenciesToShow
   );
 
   const calculateChange = (current: number, previous: number): string => {

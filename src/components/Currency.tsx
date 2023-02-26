@@ -4,24 +4,18 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrencyStatus } from "../redux/currencyStatus";
 import { Loader } from "./Loader";
+import { useCurrencies } from "../hooks/useCurrencies";
 
-const options = [
-  { value: "UAH", label: "UAH" },
-  { value: "USD", label: "USD" },
-  { value: "EUR", label: "EUR" },
-];
-
-export const Currency = () => {
+export const Currency: React.FC<ICurrency> = (props) => {
   const [selected, setSelected] = useState("UAH");
   const isSuccess = useSelector(selectCurrencyStatus);
 
-  const handleChange = useCallback((newValue: any, actionMeta: any) => {
+  const handleChange = useCallback((newValue: any) => {
     setSelected(newValue.value);
   }, []);
 
-  const currenciesToShow = ["USD", "EUR", "GBP"];
-  const data = CalculateCurrencyChanges(currenciesToShow, selected);
-  const currency = currenciesToShow?.map((el, i) => {
+  const data = CalculateCurrencyChanges(props.currenciesToShow, selected);
+  const currency = props.currenciesToShow?.map((el, i) => {
     return (
       <tr className="table-row" key={i}>
         <td>
@@ -39,17 +33,17 @@ export const Currency = () => {
   });
 
   return (
-    <div className="home-block">
-      <div className="block-header">
-        <h4>Currency Rates</h4>
+    <>
+      <div className="block-header ">
+        <h4>{props.tittle}</h4>
         <Select
           className="currency-select"
           defaultValue={{ label: "UAH", value: "UAH" }}
           onChange={handleChange}
-          options={options}
+          options={useCurrencies()}
         />
       </div>
-      <div className="block-content">
+      <div className="block-content currency-table">
         {isSuccess ? (
           <table>
             <thead>
@@ -66,6 +60,10 @@ export const Currency = () => {
           <Loader />
         )}
       </div>
-    </div>
+    </>
   );
 };
+interface ICurrency {
+  currenciesToShow: string[];
+  tittle?: string;
+}

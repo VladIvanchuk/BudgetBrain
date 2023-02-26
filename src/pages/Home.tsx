@@ -11,6 +11,7 @@ import {
   PopUp,
   Transaction,
   TransactionById,
+  Analytics,
 } from "../components";
 
 import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
@@ -22,7 +23,7 @@ export const Home: FC = () => {
   const dispatch = useDispatch();
   const { data = [], isLoading } = useGetOperationsQuery({});
   const isCardOpen = useSelector(selectIsPopUpOpen);
-
+  const currenciesToShow = ["UAH", "EUR", "USD"];
   const transactions = data
     .map((operation: ITransaction) => {
       return <Transaction key={operation?.id} {...operation} homepage />;
@@ -46,13 +47,17 @@ export const Home: FC = () => {
         <div className="home-wrapper">
           <div className="home-container">
             <div className="home-block">
-              <div className="block-header">
-                <h4>Analytics</h4>
-              </div>
-              <div className="block-content">{<Nothing />}</div>
+              <Analytics />
             </div>
           </div>
-          <div className="home-container currency">{<Currency />}</div>
+          <div className="home-container currency">
+            <div className="home-block">
+              <NavLink className="operations-link" to="/currencies">
+                See more ➤
+              </NavLink>
+              {<Currency currenciesToShow={currenciesToShow} tittle="Currency Rates" />}
+            </div>
+          </div>
         </div>
         <div className="home-wrapper operations">
           <div className="home-block">
@@ -62,14 +67,15 @@ export const Home: FC = () => {
                 See more ➤
               </NavLink>
             </div>
-            {isLoading ? (
-              <Loader />
-            ) : transactions?.length < 1 ? (
-              <Nothing />
-            ) : (
-              transactions
-            )}
-            <div className="block-content"></div>
+            <div className="block-content transactions">
+              {isLoading ? (
+                <Loader />
+              ) : transactions?.length < 1 ? (
+                <Nothing />
+              ) : (
+                transactions
+              )}
+            </div>
             <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
           </div>
         </div>

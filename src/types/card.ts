@@ -4,8 +4,15 @@ export interface ICard {
   cardAmount: number;
   createdAt: string;
   numberCard: string;
-  colorValue: string;
+  color: IColor;
 }
+
+export interface IColor {
+  id: number;
+  value: string;
+  label: string;
+}
+
 export interface ICategory {
   id: number;
   name: string;

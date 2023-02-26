@@ -1,16 +1,7 @@
 //Core
 import { Navigate, Route, Routes } from "react-router-dom";
 //Components
-import {
-  Home,
-  Profile,
-  MoneyBox,
-  Login,
-  SignUp,
-  Goals,
-  Transactions,
-  Wallet,
-} from "./pages";
+import { Home, Profile, Currencies, Login, SignUp, Transactions, Wallet } from "./pages";
 import { RequireAuth } from "./features";
 import { Layout } from "./components";
 import { useLocalToken } from "./hooks";
@@ -29,9 +20,8 @@ export const App = () => {
         <Route element={<RequireAuth />}>
           <Route path="/home" element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
-          <Route path="/goals" element={<Goals />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/money-box" element={<MoneyBox />} />
+          <Route path="/currencies" element={<Currencies />} />
           <Route path="/wallet" element={<Wallet />} />
         </Route>
         <Route path="*" element={<Navigate to={isAuth ? "/home" : "/login"} replace />} />

@@ -137,17 +137,7 @@ main {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-@media (max-width: $phone-width) {
-  main {
-    margin: 4% 2% 0 2%;
-  }
-  .wrapper {
-    height: auto;
-    display: block;
-    padding: 6rem 0 2rem 0;
-    min-height: 100vh;
-  }
-}
+
 @media (max-width: $tablet-width) {
   main {
     margin: 0 2%;
@@ -159,10 +149,7 @@ main {
     min-height: 100vh;
   }
   body {
-    overflow: visible;
-  }
-  video {
-    display: none;
+    overflow-y: visible;
   }
   .main-container {
     min-height: 85vh;
@@ -179,5 +166,21 @@ main {
     h2 {
       padding: 0;
     }
+  }
+}
+@media (max-width: $phone-width) {
+  main {
+    margin: 4% 2% 0 2%;
+  }
+  .wrapper {
+    height: auto;
+    display: block;
+    padding: 6rem 0 2rem 0;
+    min-height: 100vh;
+  }
+}
+@media (max-width: $phone-s-width) {
+  video {
+    display: none;
   }
 }

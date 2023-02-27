@@ -95,22 +95,7 @@ header {
 .user-balance {
   margin-left: 1.5rem;
 }
-@media (max-width: $phone-width) {
-  header {
-    padding: 0 1rem;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-    height: 6rem;
-    .burger {
-      display: block;
-    }
-  }
-  .user {
-    display: none;
-  }
-}
+
 @media (max-width: $tablet-width) {
   header {
     padding: 0 1rem;
@@ -125,5 +110,21 @@ header {
   }
   .user {
     margin-right: 5rem;
+  }
+}
+@media (max-width: $phone-width) {
+  header {
+    padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    height: 6rem;
+    .burger {
+      display: block;
+    }
+  }
+  .user {
+    display: none;
   }
 }

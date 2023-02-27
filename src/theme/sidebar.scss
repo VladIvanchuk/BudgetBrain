@@ -56,11 +56,6 @@ nav {
     margin-left: 0.5rem;
   }
 }
-@media (max-width: $phone-width) {
-  .sidebar {
-    width: 75%;
-  }
-}
 @media (max-width: $tablet-width) {
   .sidebar {
     position: fixed;
@@ -84,5 +79,11 @@ nav {
   .out {
     bottom: 8rem;
     font-size: 1.2rem;
+  }
+}
+@media (max-width: $phone-width) {
+  .sidebar {
+    width: 75%;
+    top: 6rem;
   }
 }

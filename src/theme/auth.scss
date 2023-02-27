@@ -187,7 +187,7 @@ form {
     transform: rotate(360deg);
   }
 }
-@media (max-width: $phone-width) {
+@media (max-width: $phone-s-width) {
   .authorization {
     height: 80vh;
     .logo {

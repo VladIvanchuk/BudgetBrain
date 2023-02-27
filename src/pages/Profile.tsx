@@ -1,17 +1,23 @@
 import { FC } from "react";
 import { useGetUserQuery } from "../redux/api/userApiSlice";
+import { motion } from "framer-motion";
 
 export const Profile: FC = () => {
   const { data = {} } = useGetUserQuery({});
   const { firstName, lastName, email } = data;
-  console.log(data);
 
   return (
-    <div className="main-container">
+    <main className="main-container">
       <div className="block-header">
         <h2>Profile</h2>
       </div>
-      <div className="block-wrapper">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="block-wrapper"
+      >
         {/* {<Loader />} */}
         <div className="profile-top">
           <div className="profile-img"></div>
@@ -23,7 +29,7 @@ export const Profile: FC = () => {
             <span>{email}</span>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </main>
   );
 };

@@ -1,7 +1,8 @@
 .cards {
   padding-top: 1rem;
-  @include flex-justify(sb);
+  display: flex;
   flex-wrap: wrap;
+  column-gap: 2rem;
 }
 .flip-card {
   width: 22.5rem;

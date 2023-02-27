@@ -1,6 +1,5 @@
 .home {
   display: flex;
-  padding: 2%;
   .currency-select {
     display: none;
   }
@@ -140,13 +139,13 @@
     width: 100% !important;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: $phone-width) {
   .home {
     display: block;
     .operations,
     .home-container {
       width: 100%;
-      margin: 3% 0;
+      margin: 0 0 3% 0;
     }
     .transactions {
       margin-bottom: 3rem;
@@ -174,5 +173,26 @@
   }
   .home .currency .block-content {
     margin: 1.8rem 0 0 0;
+  }
+}
+@media (max-width: $tablet-width) {
+  .home .home-wrapper {
+    height: auto;
+    .block-content {
+      margin: 0 0 2rem 0;
+    }
+    .transactions {
+      margin-top: -1.5rem;
+    }
+  }
+}
+@media (max-width: $small-pc-width) {
+  .charts {
+    padding-top: 0;
+    margin-bottom: -5rem;
+  }
+  .home .block-content {
+    margin: 0.5rem 0;
+    position: relative;
   }
 }

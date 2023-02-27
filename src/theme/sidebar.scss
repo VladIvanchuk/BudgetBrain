@@ -6,6 +6,7 @@
   background-color: $transp;
   backdrop-filter: blur(20px);
 }
+
 .sidebar-container {
   @include full-size;
   @include flex-center(y);
@@ -55,17 +56,24 @@ nav {
     margin-left: 0.5rem;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: $phone-width) {
   .sidebar {
     width: 75%;
-    right: 0;
+  }
+}
+@media (max-width: $tablet-width) {
+  .sidebar {
     position: fixed;
-    z-index: 2;
+    right: 0;
+    top: 4.5rem;
+    width: 30%;
     padding: 2rem 1.5rem;
+    transition: 0.3s ease-out;
+    z-index: 2;
     transform: translateX(100%);
-    transition: 0.3s;
     &.active {
       transform: translateX(0%) !important;
+      transition: 0.2s ease-in;
     }
   }
   nav a {

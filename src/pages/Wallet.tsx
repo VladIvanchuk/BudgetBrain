@@ -12,6 +12,7 @@ import {
 import { useGetCardsQuery } from "../redux/api/cardApiSlice";
 import { selectIsPopUpOpen, removeActivePopUp } from "../redux/popUpSlice";
 import { ICard } from "../types/card";
+import { motion } from "framer-motion";
 
 export const Wallet: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -35,16 +36,22 @@ export const Wallet: React.FC = () => {
       <PopUp name="Add card" open={openModal} onClose={() => setOpenModal(false)}>
         <AddCardFrom onClose={() => setOpenModal(false)} />
       </PopUp>
-      <div className="main-container">
+      <main className="main-container">
         <div className="block-header">
           <h2>Wallet</h2>
           {/* <span className="cash">Cash: 2500$</span> */}
           <AddButton onClick={() => setOpenModal(true)} name="Add card" />
         </div>
-        <div className="block-wrapper cards">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="block-wrapper cards"
+        >
           {isLoading ? <Loader /> : cards?.length < 1 ? <Nothing /> : cards}
-        </div>
-      </div>
+        </motion.div>
+      </main>
     </>
   );
 };

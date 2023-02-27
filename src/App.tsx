@@ -7,6 +7,7 @@ import { Layout } from "./components";
 import { useLocalToken } from "./hooks";
 import { Bounce, ToastContainer } from "react-toastify";
 import { useToastMessage } from "./hooks/useToastMessage";
+import { AnimatePresence } from "framer-motion";
 
 export const App = () => {
   useToastMessage();
@@ -14,18 +15,23 @@ export const App = () => {
   return (
     <Layout>
       <ToastContainer newestOnTop transition={Bounce} theme="dark" />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route element={<RequireAuth />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/currencies" element={<Currencies />} />
-          <Route path="/wallet" element={<Wallet />} />
-        </Route>
-        <Route path="*" element={<Navigate to={isAuth ? "/home" : "/login"} replace />} />
-      </Routes>
+      <AnimatePresence>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/currencies" element={<Currencies />} />
+            <Route path="/wallet" element={<Wallet />} />
+          </Route>
+          <Route
+            path="*"
+            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+          />
+        </Routes>
+      </AnimatePresence>
     </Layout>
   );
 };

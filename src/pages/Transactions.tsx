@@ -12,6 +12,7 @@ import {
 import { selectIsPopUpOpen, removeActivePopUp } from "../redux/popUpSlice";
 import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
 import { ITransaction } from "../types/card";
+import { motion } from "framer-motion";
 
 export const Transactions: FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -36,15 +37,21 @@ export const Transactions: FC = () => {
       <PopUp name="Add Transaction" open={openModal} onClose={() => setOpenModal(false)}>
         <AddTransaction onClose={() => setOpenModal(false)} />
       </PopUp>
-      <div className="main-container">
+      <main className="main-container">
         <div className="block-header">
           <h2>Transactions</h2>
           <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
         </div>
-        <div className="block-wrapper transactions">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="block-wrapper transactions"
+        >
           {isLoading ? <Loader /> : transactions?.length < 1 ? <Nothing /> : transactions}
-        </div>
-      </div>
+        </motion.div>
+      </main>
     </>
   );
 };

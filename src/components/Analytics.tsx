@@ -1,7 +1,8 @@
 import { cardAmountNormalize } from "../features";
 import { useGetUserBalanceQuery } from "../redux/api/userApiSlice";
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts";
 import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
+import { motion } from "framer-motion";
 
 export const Analytics = () => {
   const { data: { balance, income, expenses, total } = {} } = useGetUserBalanceQuery({});
@@ -29,23 +30,29 @@ export const Analytics = () => {
       <div className="block-header">
         <h4>Analytics</h4>
       </div>
-      <div className="block-content analytics">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="block-content analytics"
+      >
         <div className="money">
           <div className="analytics-item balance">
             <h4>Balance</h4>
-            <span>{cardAmountNormalize(balance)}</span>
+            <span>{cardAmountNormalize(balance ? balance : 0)}</span>
           </div>
           <div className="analytics-item income">
             <h4>Month income</h4>
-            <span>{cardAmountNormalize(income)}</span>
+            <span>{cardAmountNormalize(income ? income : 0)}</span>
           </div>
           <div className="analytics-item expenses">
             <h4>Month expenses</h4>
-            <span>{cardAmountNormalize(expenses)}</span>
+            <span>{cardAmountNormalize(expenses ? expenses : 0)}</span>
           </div>
           <div className="analytics-item total">
             <h4>Month total</h4>
-            <span>{cardAmountNormalize(total)}</span>
+            <span>{cardAmountNormalize(total ? total : 0)}</span>
           </div>
         </div>
         <div className="charts">
@@ -55,11 +62,10 @@ export const Analytics = () => {
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
             <Legend />
           </LineChart>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -14,7 +14,7 @@
     margin-top: 0.5rem;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: $phone-width) {
   .currencies .currency-select {
     top: 1rem;
     right: 1.5rem;

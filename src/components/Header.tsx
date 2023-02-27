@@ -7,7 +7,6 @@ import { Sidebar } from "./Sidebar";
 
 export const Header: FC = () => {
   const { data: user = {} } = useGetUserQuery({});
-  const { firstName } = user;
   const { data = {} } = useGetUserBalanceQuery({});
   const { balance } = data;
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -25,14 +24,17 @@ export const Header: FC = () => {
 
         <div className="user">
           <div className="user-photo"></div>
-          <span className="username">Hello {firstName}</span>
-          <span className="user-balance">{cardAmountNormalize(balance)}</span>
+          <span className="username">Hello {user.firstName}</span>
+          <span className="user-balance">
+            {cardAmountNormalize(balance ? balance : 0)}
+          </span>
         </div>
         <label htmlFor="burger" className="burger">
           <input
             className={sidebarOpen ? "menu-active" : ""}
             id="burger"
             type="checkbox"
+            checked={sidebarOpen}
             onChange={handleCheckboxChange}
           />
           <span></span>

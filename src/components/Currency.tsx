@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCurrencyStatus } from "../redux/currencyStatus";
 import { Loader } from "./Loader";
 import { useCurrencies } from "../hooks/useCurrencies";
+import { motion } from "framer-motion";
 
 export const Currency: React.FC<ICurrency> = (props) => {
   const [selected, setSelected] = useState("UAH");
@@ -43,7 +44,13 @@ export const Currency: React.FC<ICurrency> = (props) => {
           options={useCurrencies()}
         />
       </div>
-      <div className="block-content currency-table">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="block-content currency-table"
+      >
         {isSuccess ? (
           <table>
             <thead>
@@ -59,7 +66,7 @@ export const Currency: React.FC<ICurrency> = (props) => {
         ) : (
           <Loader />
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

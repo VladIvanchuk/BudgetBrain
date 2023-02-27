@@ -33,7 +33,7 @@
   background: none;
   color: #000 !important;
   padding: 1rem 2rem;
-
+  border-radius: 0;
   .form-tag {
     width: 7.5rem;
   }
@@ -169,12 +169,13 @@
     background: rgb(73, 73, 73);
   }
 }
-@media (max-width: 480px) {
+@media (max-width: $phone-width) {
   .card-by-id {
-    min-width: 90vw;
+    min-width: auto;
     padding: 1rem;
   }
   .popup {
+    width: 90vw;
     .header {
       padding: 1.3rem 1rem;
     }

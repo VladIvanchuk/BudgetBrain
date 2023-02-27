@@ -19,31 +19,29 @@ export const Sidebar: FC<SidebarProps> = ({ active, onClose }) => {
   };
 
   return (
-    <div className="sidebar-wrapper" onClick={onClose}>
-      <div className={`sidebar${active ? " active" : ""}`}>
-        <div className="sidebar-container">
-          <nav>
-            <NavLink active-classname="active" to="/home">
-              <BsHouseDoorFill /> Home
-            </NavLink>
-            <NavLink active-classname="active" to="/transactions">
-              <BiTransferAlt /> Transactions
-            </NavLink>
-            <NavLink active-classname="active" to="/wallet">
-              <IoWalletSharp /> Wallet
-            </NavLink>
-            <NavLink active-classname="active" to="/currencies">
-              <BsCurrencyExchange /> Currencies
-            </NavLink>
+    <div className={`sidebar${active ? " active" : ""}`}>
+      <div className="sidebar-container">
+        <nav onClick={onClose}>
+          <NavLink active-classname="active" to="/home">
+            <BsHouseDoorFill /> Home
+          </NavLink>
+          <NavLink active-classname="active" to="/transactions">
+            <BiTransferAlt /> Transactions
+          </NavLink>
+          <NavLink active-classname="active" to="/wallet">
+            <IoWalletSharp /> Wallet
+          </NavLink>
+          <NavLink active-classname="active" to="/currencies">
+            <BsCurrencyExchange /> Currencies
+          </NavLink>
 
-            <NavLink active-classname="active" to="/profile">
-              <CgProfile /> Profile
-            </NavLink>
-          </nav>
-          <button className="out" onClick={logOutButton}>
-            Log out <GiEntryDoor />
-          </button>
-        </div>
+          <NavLink active-classname="active" to="/profile">
+            <CgProfile /> Profile
+          </NavLink>
+        </nav>
+        <button className="out" onClick={logOutButton}>
+          Log out <GiEntryDoor />
+        </button>
       </div>
     </div>
   );

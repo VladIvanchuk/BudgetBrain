@@ -1,4 +1,4 @@
-import { Header, Sidebar } from ".";
+import { Header } from ".";
 //Styles
 import bgMain from "../theme/img/bg-img.jpg";
 import { useLocation } from "react-router-dom";

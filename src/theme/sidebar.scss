@@ -55,3 +55,8 @@ nav {
     margin-left: 0.5rem;
   }
 }
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+}

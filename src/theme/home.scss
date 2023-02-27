@@ -132,3 +132,28 @@
   padding-top: 2rem;
   margin-bottom: -2rem;
 }
+@media (max-width: 480px) {
+  .home {
+    display: block;
+    .operations {
+      width: 100%;
+      margin: 2% 0;
+    }
+    .transactions {
+      margin-bottom: 3rem;
+    }
+  }
+  .home-block {
+    padding: 1rem;
+  }
+  .block-wrapper table th,
+  .home-block table th {
+    padding: 0.5rem 0.05rem;
+    font-size: 0.8rem;
+  }
+  .block-wrapper table td,
+  .home-block table td {
+    width: auto;
+    padding: 0.6rem 0.2rem;
+  }
+}

@@ -33,3 +33,8 @@ header {
 .user-balance {
   margin-left: 1.5rem;
 }
+@media (max-width: 480px) {
+  .user {
+    display: none;
+  }
+}

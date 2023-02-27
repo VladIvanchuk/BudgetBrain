@@ -136,3 +136,12 @@ main {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+@media (max-width: 480px) {
+  .wrapper {
+    height: auto;
+    display: block;
+  }
+  body {
+    overflow: visible;
+  }
+}

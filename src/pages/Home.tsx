@@ -18,11 +18,14 @@ import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
 import { removeActivePopUp, selectIsPopUpOpen } from "../redux/popUpSlice";
 import { ITransaction } from "../types/card";
 import { motion } from "framer-motion";
+import { useGetCardsQuery } from "../redux/api/cardApiSlice";
+import { setError } from "../redux/auth/authSlice";
 
 export const Home: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const { data = [], isLoading } = useGetOperationsQuery({});
+  const { data: cards = [] } = useGetCardsQuery({});
   const isCardOpen = useSelector(selectIsPopUpOpen);
   const currenciesToShow = ["UAH", "EUR", "USD"];
   const transactions = data
@@ -83,7 +86,18 @@ export const Home: FC = () => {
                 transactions
               )}
             </motion.div>
-            <AddButton onClick={() => setOpenModal(true)} name="Add transaction" />
+            <AddButton
+              onClick={() =>
+                cards.length > 0
+                  ? setOpenModal(true)
+                  : dispatch(
+                      (setError as any)(
+                        "Currently, you have no cards! You can create one in your wallet."
+                      )
+                    )
+              }
+              name="Add transaction"
+            />
           </div>
         </div>
       </main>

@@ -1,6 +1,6 @@
 import { cardAmountNormalize } from "../features";
 import { useGetUserBalanceQuery } from "../redux/api/userApiSlice";
-import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis, Tooltip } from "recharts";
 import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
 import { motion } from "framer-motion";
 
@@ -62,6 +62,7 @@ export const Analytics = () => {
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="name" />
             <YAxis />
+            <Tooltip />
             <Legend />
           </LineChart>
         </div>

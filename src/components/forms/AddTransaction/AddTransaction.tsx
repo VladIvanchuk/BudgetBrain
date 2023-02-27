@@ -8,6 +8,7 @@ import {
   useGetCategoriesQuery,
   useGetOperationsQuery,
 } from "../../../redux/api/operationApiSlice";
+import { useGetUserBalanceQuery } from "../../../redux/api/userApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
 import { ICard, ICategory, ITransaction } from "../../../types/card";
 import { IPopUp } from "../../../types/popup";
@@ -18,7 +19,9 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
   const [selectedType, setSelectedType] = useState<number>(0);
   const dispatch = useDispatch();
   const { data: categories = [] } = useGetCategoriesQuery(selectedType);
-  const { refetch } = useGetOperationsQuery({});
+  const { refetch: refetchOperations } = useGetOperationsQuery({});
+  const { refetch: refetchCards } = useGetCardsQuery({});
+  const { refetch: refetchBalance } = useGetUserBalanceQuery({});
   const [createOperation, isLoading] = useCreateOperationMutation();
   const { data: allCards = [] } = useGetCardsQuery({});
 
@@ -43,7 +46,9 @@ export const AddTransaction: React.FC<IPopUp> = ({ onClose }) => {
       await createOperation(data as ITransaction).unwrap();
       dispatch((setSuccess as any)("Operation added"));
       onClose();
-      refetch();
+      refetchOperations();
+      refetchCards();
+      refetchBalance();
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));

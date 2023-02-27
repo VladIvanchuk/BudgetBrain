@@ -6,6 +6,7 @@ import {
   useGetCardColorsQuery,
   useGetCardsQuery,
 } from "../../../redux/api/cardApiSlice";
+import { useGetUserBalanceQuery } from "../../../redux/api/userApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
 import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
@@ -15,7 +16,8 @@ export const AddCardFrom: React.FC<IPopUp> = ({ onClose }) => {
   const dispatch = useDispatch();
   const [createCard, isLoading] = useCreateCardMutation();
   const { data = [] } = useGetCardColorsQuery({});
-  const { refetch } = useGetCardsQuery({});
+  const { refetch: refetchCards } = useGetCardsQuery({});
+  const { refetch: refetchBalance } = useGetUserBalanceQuery({});
 
   const form = useForm({
     mode: "onTouched",
@@ -28,7 +30,8 @@ export const AddCardFrom: React.FC<IPopUp> = ({ onClose }) => {
       await createCard(data as any).unwrap();
       dispatch((setSuccess as any)("Card added"));
       onClose();
-      refetch();
+      refetchCards();
+      refetchBalance();
     } catch (err: any) {
       console.log(err);
       if (!err?.status) {

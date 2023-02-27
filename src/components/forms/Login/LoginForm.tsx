@@ -8,10 +8,16 @@ import { setCredentials, setError, setSuccess } from "../../../redux/auth/authSl
 import { useLoginMutation } from "../../../redux/api/authApiSlice";
 import { Input } from "../Input";
 import { ILogin } from "../../../types/auth";
+import { useGetOperationsQuery } from "../../../redux/api/operationApiSlice";
+import { useGetCardsQuery } from "../../../redux/api/cardApiSlice";
+import { useGetUserBalanceQuery } from "../../../redux/api/userApiSlice";
 
 export const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [login, isLoading] = useLoginMutation();
+  const { refetch: refetchOperations } = useGetOperationsQuery({});
+  const { refetch: refetchCards } = useGetCardsQuery({});
+  const { refetch: refetchBalance } = useGetUserBalanceQuery({});
   const dispatch = useDispatch();
 
   const form = useForm({
@@ -25,6 +31,9 @@ export const LoginForm: FC = () => {
       dispatch(setCredentials({ ...userData }));
       navigate("/home");
       dispatch((setSuccess as any)("Welcome back!"));
+      refetchOperations();
+      refetchCards();
+      refetchBalance();
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));

@@ -15,7 +15,6 @@ export const Layout: React.FC<ILayout> = ({ children }) => {
         </video>
       </div>
       {!show && <Header />}
-      {!show && <Sidebar />}
       {children}
     </div>
   );

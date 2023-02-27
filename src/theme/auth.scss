@@ -1,9 +1,6 @@
 .authorization {
   width: 100vw;
   height: 100vh;
-  background: url("./img/wallpaper2.jpg") center no-repeat;
-  background-size: cover;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,9 +188,12 @@ form {
   }
 }
 @media (max-width: 480px) {
-  .authorization .logo {
-    left: 50%;
-    transform: translateX(-50%);
+  .authorization {
+    height: 80vh;
+    .logo {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
   form {
     width: 90vw;

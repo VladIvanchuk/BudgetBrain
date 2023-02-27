@@ -1,4 +1,6 @@
 .popup-wrapper {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -168,5 +170,17 @@
   }
 }
 @media (max-width: 480px) {
-  
+  .card-by-id {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+  .popup {
+    .header {
+      padding: 1.3rem 1rem;
+    }
+  }
+  .card-by-id .transactions {
+    height: auto;
+    max-height: 22rem;
+  }
 }

@@ -6,7 +6,7 @@
   background-color: $transp;
   backdrop-filter: blur(20px);
 }
-.sidebar-wrapper {
+.sidebar-container {
   @include full-size;
   @include flex-center(y);
   flex-direction: column;
@@ -46,7 +46,7 @@ nav {
 }
 .out {
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 2rem;
   border: none;
   background: none;
   cursor: pointer;
@@ -57,6 +57,24 @@ nav {
 }
 @media (max-width: 480px) {
   .sidebar {
-    display: none;
+    width: 75%;
+    right: 0;
+    position: fixed;
+    z-index: 2;
+    padding: 2rem 1.5rem;
+    transform: translateX(100%);
+    transition: 0.3s;
+    &.active {
+      transform: translateX(0%) !important;
+    }
+  }
+  nav a {
+    font-size: 1.3rem;
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+  }
+  .out {
+    bottom: 8rem;
+    font-size: 1.2rem;
   }
 }

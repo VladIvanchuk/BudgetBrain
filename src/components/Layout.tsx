@@ -12,7 +12,6 @@ export const Layout: React.FC<ILayout> = ({ children }) => {
       <div className="video-bg">
         <video autoPlay loop muted>
           <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       {!show && <Header />}

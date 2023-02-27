@@ -105,6 +105,7 @@
 .money {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
   .analytics-item {
     padding: 0.5rem 1rem;
     border-radius: $rad2;
@@ -132,16 +133,31 @@
   padding-top: 2rem;
   margin-bottom: -2rem;
 }
+.recharts-wrapper {
+  width: 100% !important;
+  svg,
+  .recharts-legend-wrapper {
+    width: 100% !important;
+  }
+}
 @media (max-width: 480px) {
   .home {
     display: block;
-    .operations {
+    .operations,
+    .home-container {
       width: 100%;
-      margin: 2% 0;
+      margin: 3% 0;
     }
     .transactions {
       margin-bottom: 3rem;
     }
+  }
+  .money {
+    gap: 1rem;
+  }
+  .charts {
+    padding-top: 0rem;
+    margin-bottom: -1rem;
   }
   .home-block {
     padding: 1rem;
@@ -155,5 +171,8 @@
   .home-block table td {
     width: auto;
     padding: 0.6rem 0.2rem;
+  }
+  .home .currency .block-content {
+    margin: 1.8rem 0 0 0;
   }
 }

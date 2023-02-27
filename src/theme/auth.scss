@@ -190,3 +190,13 @@ form {
     transform: rotate(360deg);
   }
 }
+@media (max-width: 480px) {
+  .authorization .logo {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  form {
+    width: 90vw;
+    padding: 2rem 2rem 0.5rem 2rem;
+  }
+}

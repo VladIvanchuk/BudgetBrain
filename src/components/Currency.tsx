@@ -3,7 +3,7 @@ import Select from "react-select";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrencyStatus } from "../redux/currencyStatus";
-import { Loader } from "./Loader";
+import { Loader } from "./UI/Loader";
 import { useCurrencies } from "../hooks/useCurrencies";
 import { motion } from "framer-motion";
 

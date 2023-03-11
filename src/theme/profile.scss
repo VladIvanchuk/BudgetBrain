@@ -1,11 +1,6 @@
 .profile-top {
   @include flex-justify(sb);
-  text-align: right;
-  .name {
-    display: flex;
-    justify-content: end;
-    gap: 1rem;
-  }
+  margin-top: 2rem;
   span {
     font-weight: 600;
     font-size: 1.5rem;
@@ -19,16 +14,42 @@
   margin-right: 0.5rem;
   flex-shrink: 0;
 }
-@media (max-width: $phone-width) {
-  .profile-top {
-    flex-direction: column;
-
-    text-align: left;
-    .name {
-      justify-content: start;
+.profile {
+  button {
+    padding-right: 1rem;
+    svg {
+      margin-left: 0.5rem;
     }
   }
+}
+
+.user-info {
+  table {
+    border-collapse: separate;
+    border-spacing: 0 2rem;
+  }
+  td {
+    padding-right: 2rem;
+  }
+}
+@media (max-width: $phone-width) {
   .user-info {
     margin: 2rem 0;
+  }
+}
+@media (max-width: $phone-s-width) {
+  .profile-top {
+    flex-direction: column;
+    span {
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      td {
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
   }
 }

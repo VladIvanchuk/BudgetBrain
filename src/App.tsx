@@ -8,9 +8,11 @@ import { useLocalToken } from "./hooks";
 import { Bounce, ToastContainer } from "react-toastify";
 import { useToastMessage } from "./hooks/useToastMessage";
 import { AnimatePresence } from "framer-motion";
+import { useValidateTokenQuery } from "./redux/api/authApiSlice";
 
 export const App = () => {
   useToastMessage();
+  const { isSuccess } = useValidateTokenQuery({});
   const { isAuth } = useLocalToken();
   return (
     <Layout>
@@ -28,7 +30,7 @@ export const App = () => {
           </Route>
           <Route
             path="*"
-            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+            element={<Navigate to={isAuth && !isSuccess ? "/home" : "/login"} replace />}
           />
         </Routes>
       </AnimatePresence>

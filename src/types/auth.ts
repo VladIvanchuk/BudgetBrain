@@ -9,3 +9,10 @@ export interface ILogin {
   email: string;
   password: string;
 }
+export interface IUPDUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  photo?: string;
+}

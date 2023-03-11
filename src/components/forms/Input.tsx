@@ -3,6 +3,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 export const Input: React.FC<IPropTypes> = (props) => {
   const input = (
     <input
+      defaultValue={props?.value}
       min="0"
       type={props.type}
       placeholder={props.placeholder}

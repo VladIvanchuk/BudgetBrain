@@ -16,7 +16,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
+    validateToken: builder.query({
+      query: () => ({
+        url: "/validate-token",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApiSlice;
+export const { useLoginMutation, useRegisterMutation, useValidateTokenQuery } =
+  authApiSlice;

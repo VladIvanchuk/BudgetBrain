@@ -7,11 +7,13 @@ import {
   useGetCardsQuery,
 } from "../redux/api/cardApiSlice";
 import { ITransaction } from "../types/card";
-import { Loader } from "./Loader";
-import { Nothing } from "./Nothing";
+import { Loader } from "./UI/Loader";
+import { Nothing } from "./UI/Nothing";
 import { Transaction } from "./Transaction";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 import { setError, setSuccess } from "../redux/auth/authSlice";
+import { useGetUserBalanceQuery } from "../redux/api/userApiSlice";
+import { useGetOperationsQuery } from "../redux/api/operationApiSlice";
 
 export const CardById: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,9 @@ export const CardById: React.FC = () => {
   const { data = [], isLoading } = useGetCardByIdQuery(activeCard);
   const { id, numberCard, cardAmount, cardName, operations } = data;
   const [deleteCardById] = useDeleteCardByIdMutation(id);
-  const { refetch } = useGetCardsQuery({});
+  const { refetch: refetchCards } = useGetCardsQuery({});
+  const { refetch: refetchBalance } = useGetUserBalanceQuery({});
+  const { refetch: refetchOperations } = useGetOperationsQuery({});
 
   const transactions = operations?.map((operation: ITransaction) => {
     return <Transaction key={operation?.id} {...operation} />;
@@ -30,7 +34,9 @@ export const CardById: React.FC = () => {
       await deleteCardById(id);
       dispatch((setSuccess as any)("Card deleted"));
       dispatch(removeActivePopUp());
-      refetch();
+      refetchCards();
+      refetchBalance();
+      refetchOperations();
     } catch (err: any) {
       if (!err?.status) {
         dispatch((setError as any)("No Server Response"));
@@ -47,7 +53,10 @@ export const CardById: React.FC = () => {
       ) : (
         <div>
           <div className="buttons">
-            <button className="edit button">
+            <button
+              className="edit button"
+              onClick={() => dispatch((setError as any)("Coming Soon"))}
+            >
               <FiEdit3 /> Edit
             </button>
             <button className="remove button" onClick={() => handleDelete()}>

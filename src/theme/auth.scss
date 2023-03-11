@@ -11,12 +11,14 @@
     left: 2.5rem;
     top: 2rem;
   }
+  form {
+    width: 30rem;
+  }
 }
 form {
   @include background-blur;
   @include flex-full-center;
   flex-direction: column;
-  width: 30rem;
   padding: 2rem 2rem 0.5rem 2rem;
   border-radius: 0.8rem;
   input {
@@ -194,12 +196,12 @@ form {
       left: 50%;
       transform: translateX(-50%);
     }
-  }
-  form {
-    width: 90vw;
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-    .btn.reg {
-      width: 9rem;
+    form {
+      width: 90vw;
+      padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+      .btn.reg {
+        width: 9rem;
+      }
     }
   }
 }

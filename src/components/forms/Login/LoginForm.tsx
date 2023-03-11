@@ -36,9 +36,9 @@ export const LoginForm: FC = () => {
       refetchBalance();
     } catch (err: any) {
       if (!err?.status) {
-        dispatch((setError as any)("No Server Response"));
-      } else {
         dispatch((setError as any)(err.data));
+      } else {
+        dispatch((setError as any)("No Server Response"));
       }
     }
   });

@@ -37,6 +37,12 @@
   .form-tag {
     width: 7.5rem;
   }
+  .file {
+    input {
+      border: none;
+      padding: 0.5rem 0;
+    }
+  }
   input,
   select {
     color: #2b3141;
@@ -164,9 +170,11 @@
   }
   .remove {
     background: $red;
+    align-self: flex-end;
   }
   .edit {
     background: rgb(73, 73, 73);
+    opacity: 0;
   }
 }
 @media (max-width: $phone-width) {
@@ -174,14 +182,19 @@
     min-width: auto;
     padding: 1rem;
   }
+  .card-by-id .transactions {
+    height: auto;
+    max-height: 22rem;
+  }
+  .popup {
+    width: 70vw;
+  }
+}
+@media (max-width: $phone-s-width) {
   .popup {
     width: 90vw;
     .header {
       padding: 1.3rem 1rem;
     }
-  }
-  .card-by-id .transactions {
-    height: auto;
-    max-height: 22rem;
   }
 }

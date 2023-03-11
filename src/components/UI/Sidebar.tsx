@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { BiTransferAlt } from "react-icons/bi";
 import { BsHouseDoorFill, BsCurrencyExchange } from "react-icons/bs";
 import { IoWalletSharp } from "react-icons/io5";
-import { logOut, setSuccess } from "../redux/auth/authSlice";
+import { logOut, setSuccess } from "../../redux/auth/authSlice";
 
 export const Sidebar: FC<SidebarProps> = ({ active, onClose }) => {
   const dispatch = useDispatch();

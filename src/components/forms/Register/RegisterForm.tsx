@@ -26,11 +26,10 @@ export const RegisterForm: FC = () => {
       dispatch((setSuccess as any)("You are registered! Now login"));
       navigate("/login");
     } catch (err: any) {
-      console.log(err);
-      if (!err?.status) {
-        dispatch((setError as any)("No Server Response"));
+      if (err.data?.title) {
+        dispatch((setError as any)(err.data.title));
       } else {
-        dispatch((setError as any)(err.data));
+        dispatch((setError as any)("No Server Response"));
       }
     }
   });
@@ -77,7 +76,7 @@ export const RegisterForm: FC = () => {
         <Link className="to" to="/login">
           Login
           <span></span>
-        </Link> 
+        </Link>
         <button
           className={isLoading.status === "pending" ? "btn log sending" : "btn reg"}
           type="submit"

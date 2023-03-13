@@ -5,6 +5,7 @@ export const Input: React.FC<IPropTypes> = (props) => {
     <input
       defaultValue={props?.value}
       min="0"
+      accept={props.accept}
       type={props.type}
       placeholder={props.placeholder}
       {...props.register}
@@ -52,4 +53,5 @@ interface IPropTypes {
     message?: string;
   };
   value?: any;
+  accept?: string;
 }

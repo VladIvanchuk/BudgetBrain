@@ -32,10 +32,10 @@ export const TransactionById: React.FC = () => {
       refetchOperations();
       dispatch(removeActivePopUp());
     } catch (err: any) {
-      if (!err?.status) {
-        dispatch((setError as any)("No Server Response"));
+      if (err.data?.title) {
+        dispatch((setError as any)(err.data.title));
       } else {
-        dispatch((setError as any)(err.data));
+        dispatch((setError as any)("No Server Response"));
       }
     }
   };

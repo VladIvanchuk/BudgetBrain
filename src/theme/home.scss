@@ -141,7 +141,6 @@
 @media (max-width: $small-pc-width) {
   .charts {
     padding-top: 0;
-    margin-bottom: -5rem;
   }
   .home .block-content {
     margin: 0.5rem 0;
@@ -158,6 +157,15 @@
     .transactions {
       margin-top: -1.5rem;
     }
+    .money {
+      gap: 1rem;
+      width: 100%;
+      justify-content: space-between;
+      .analytics-item {
+        flex-direction: row;
+        width: calc(50% - 1rem);
+      }
+    }
   }
 }
 @media (max-width: $phone-width) {
@@ -172,15 +180,7 @@
       margin-bottom: 3rem;
     }
   }
-  .money {
-    gap: 1rem;
-    width: 100%;
-    justify-content: space-between;
-    .analytics-item {
-      flex-direction: row;
-      width: calc(50% - 1rem);
-    }
-  }
+
   .charts {
     padding-top: 0rem;
     margin-bottom: -1rem;

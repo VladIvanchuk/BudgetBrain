@@ -10,8 +10,9 @@ import { IPopUp } from "../../../types/popup";
 export const UpdateUser: React.FC<IPopUp> = ({ onClose }) => {
   const dispatch = useDispatch();
   const { data = {} } = useGetUserQuery({});
-  const { firstName, lastName, email, id } = data;
-  const [UPDUser, isLoading] = useUpdateUserMutation(id);
+  const { id, firstName, lastName, email } = data;
+  const userId = id;
+  const [UPDUser, isLoading] = useUpdateUserMutation(userId);
 
   const form = useForm({
     mode: "onTouched",
@@ -24,11 +25,10 @@ export const UpdateUser: React.FC<IPopUp> = ({ onClose }) => {
       dispatch((setSuccess as any)("Card added"));
       onClose();
     } catch (err: any) {
-      console.log(err);
-      if (!err?.status) {
-        dispatch((setError as any)("No Server Response"));
+      if (err.data?.title) {
+        dispatch((setError as any)(err.data.title));
       } else {
-        dispatch((setError as any)(err.data));
+        dispatch((setError as any)("No Server Response"));
       }
     }
   });
@@ -72,6 +72,7 @@ export const UpdateUser: React.FC<IPopUp> = ({ onClose }) => {
       <Input
         label="Photo"
         type="file"
+        accept="image/*,.png,.jpg,.gif,.web"
         class="popup-item file"
         placeholder=""
         register={form.register("photo")}

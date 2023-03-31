@@ -25,5 +25,4 @@ export const schema: yup.SchemaOf<IUPDUser> = yup.object().shape({
     .max(16, tooLongMessage)
     .matches(/[a-zA-Z0-9]/, "Can only contain Latin letters and numbers.")
     .required("Field is required"),
-  photo: yup.string().required("Field is required"),
 });

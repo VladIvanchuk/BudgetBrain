@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./config";
 import { setCredentials, setError, setSuccess } from "../../../redux/auth/authSlice";
-import { useLoginMutation } from "../../../redux/api/authApiSlice";
+import { useLoginMutation, useValidateTokenQuery } from "../../../redux/api/authApiSlice";
 import { Input } from "../Input";
 import { ILogin } from "../../../types/auth";
 import { useGetOperationsQuery } from "../../../redux/api/operationApiSlice";
@@ -18,6 +18,8 @@ export const LoginForm: FC = () => {
   const { refetch: refetchOperations } = useGetOperationsQuery({});
   const { refetch: refetchCards } = useGetCardsQuery({});
   const { refetch: refetchBalance } = useGetUserBalanceQuery({});
+  const { refetch: refetchToken } = useValidateTokenQuery({});
+
   const dispatch = useDispatch();
 
   const form = useForm({
@@ -29,11 +31,12 @@ export const LoginForm: FC = () => {
     try {
       const userData = await login(data as ILogin).unwrap();
       dispatch(setCredentials({ ...userData }));
-      navigate("/home");
       dispatch((setSuccess as any)("Welcome back!"));
       refetchOperations();
       refetchCards();
       refetchBalance();
+      refetchToken();
+      navigate("/home");
     } catch (err: any) {
       if (err.data?.title) {
         dispatch((setError as any)(err.data.title));

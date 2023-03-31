@@ -1,32 +1,36 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  useCreateCardMutation,
+  useUpdateCardMutation,
   useGetCardColorsQuery,
   useGetCardsQuery,
+  useGetCardByIdQuery,
 } from "../../../redux/api/cardApiSlice";
 import { useGetUserBalanceQuery } from "../../../redux/api/userApiSlice";
 import { setError, setSuccess } from "../../../redux/auth/authSlice";
+import { selectActivePopUp } from "../../../redux/popUpSlice";
 import { IPopUp } from "../../../types/popup";
 import { Input } from "../Input";
 import { schema } from "./config";
 
-export const AddCardFrom: React.FC<IPopUp> = ({ onClose }) => {
+export const UpdateCardFrom: React.FC<IPopUp> = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [createCard, isLoading] = useCreateCardMutation();
+  const activeCard = useSelector(selectActivePopUp);
+  const { data: card = [] } = useGetCardByIdQuery(activeCard);
+  const [updateCard, isLoading] = useUpdateCardMutation(card.id);
   const { data = [] } = useGetCardColorsQuery({});
   const { refetch: refetchCards } = useGetCardsQuery({});
   const { refetch: refetchBalance } = useGetUserBalanceQuery({});
 
   const form = useForm({
-    mode: "onTouched",
+    mode: "onTouched",  
     resolver: yupResolver(schema),
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      await createCard(data as any).unwrap();
+      await updateCard(data as any).unwrap();
       dispatch((setSuccess as any)("Card added"));
       onClose();
       refetchCards();

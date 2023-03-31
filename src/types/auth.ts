@@ -14,5 +14,4 @@ export interface IUPDUser {
   lastName: string;
   email: string;
   password: string;
-  photo?: string;
 }

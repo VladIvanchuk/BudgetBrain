@@ -12,7 +12,7 @@ export const UpdateUser: React.FC<IPopUp> = ({ onClose }) => {
   const { data = {} } = useGetUserQuery({});
   const { id, firstName, lastName, email } = data;
   const userId = id;
-  const [UPDUser, isLoading] = useUpdateUserMutation(userId);
+  const [updateUser, isLoading] = useUpdateUserMutation(userId);
 
   const form = useForm({
     mode: "onTouched",
@@ -21,7 +21,7 @@ export const UpdateUser: React.FC<IPopUp> = ({ onClose }) => {
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
-      await UPDUser(data as any).unwrap();
+      await updateUser(data as any).unwrap();
       dispatch((setSuccess as any)("Card added"));
       onClose();
     } catch (err: any) {

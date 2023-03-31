@@ -15,9 +15,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updateUser: builder.mutation({
-      query: (id) => ({
-        url: `/user/1/edit`,
+      query: () => ({
+        url: `/user/edit`,
         method: "PUT",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       }),
     }),
   }),

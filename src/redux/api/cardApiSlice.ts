@@ -27,6 +27,12 @@ export const cardApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    updateCard: builder.mutation({
+      query: (id) => ({
+        url: `/card/${id}/edit`,
+        method: "DELETE",
+      }),
+    }),
     getCardColors: builder.query({
       query: () => ({
         url: "/colors",
@@ -41,5 +47,6 @@ export const {
   useGetCardsQuery,
   useGetCardByIdQuery,
   useDeleteCardByIdMutation,
+  useUpdateCardMutation,
   useGetCardColorsQuery,
 } = cardApiSlice;
